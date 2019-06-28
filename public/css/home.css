@@ -1,0 +1,138 @@
+h4{
+ color:white;
+}
+img{
+  height: 150px;
+  width: 150px;
+  border-radius: 512px;
+}
+.side-nav{
+top: 65px;
+width: 200px;
+
+}
+.side-product{
+  width: 130px;
+  border-radius: 2px  ;
+}
+.panels-product
+{
+
+  height: 46vh;
+  width: 55vh;
+  overflow-y:scroll;
+
+}
+.li-height-center
+{
+  height: 74px;
+  text-align: center;
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  user-select: none;
+}
+.first
+{
+  border-top: 1px solid white;
+}
+.size-text
+{
+  font-size: 88% !important;
+
+}
+.pr
+{
+  padding-right:5px;
+  padding-left:5px;
+}
+div.ml
+{
+  margin-left: 30px;
+}
+.z-in1000
+{
+  z-index: 1000;
+}
+.z-in999
+{
+  z-index: 500;
+}
+a.navlib
+{
+  border-bottom:1px solid #bdbdbd;
+}
+.li-height-center:hover
+{
+  background-color: #42a5f5;
+  cursor: pointer;
+}
+.mr-2
+{
+  margin-right: 2%;
+}
+
+.ml-10
+{
+  margin-left: 5%;
+}
+.mt-85
+{
+  margin-top: 100px;
+}
+.mt-65
+{
+  margin-top: 65px;
+
+}
+.mt-20
+{
+  margin-top: 20px;
+}
+.mt-50
+{
+  margin-top:50px;
+}
+.mt-10-negative
+{
+  margin-top:-10px;
+}
+.mt-8
+{
+  margin-top: 8px;
+}
+img.logotipo{
+  width: 200px;
+  height: 90px;
+  bottom: -20%;
+  /* padding: 5px; */
+
+}
+.perfil-empleado{
+  width: 100px;
+  height: 100px;
+  margin-left: 25%;
+  margin-top: 15%;
+  border: 5px solid white;
+}
+
+
+.active-t{
+    background-color: rgba(0,0,0,.1) !important;
+}
+.activate-p{
+    background-color: rgba(0,150,136,.6) !important
+}
+.activate-c{
+    background-color: rgba(29, 94, 146, 0.8) !important
+}
+
+.click_disable{
+    pointer-events:none;
+    background-color: rgba(98,98,98,.6) !important
+}
+
+.mt-100
+{
+  margin-top: 90%;
+}
