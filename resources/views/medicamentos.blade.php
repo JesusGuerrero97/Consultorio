@@ -63,7 +63,8 @@
                                 <th>Nombre medicamento</th>
                                 <th>Descripcion</th>
                                 <th>Dosis</th>
-                                <th>Opciones</th>
+                                <th>Editar</th>
+                                <th>Deshabilitar</th>
                             </tr>
                             </thead>
 
@@ -72,18 +73,21 @@
                                 <td>Paracetamol</td>
                                 <td>Pastillas para el dolor</td>
                                 <td>1 cada 6 hrs</td>
+                                <td><button class="waves-effect amber accent-3 btn modal-trigger"  href="#modalEditarMaterial"><i class="material-icons">edit</i></button></td>
                                 <td><div class="switch">    <label>            <input type="checkbox">      <span class="lever"></span>          </label>  </div></td>
                             </tr>
                             <tr>
                                 <td>Genoprazol</td>
                                 <td>Para la gastritis</td>
                                 <td>1 cada 8 hrs</td>
+                                <td><button class="waves-effect amber accent-3 btn modal-trigger"  href="#modalEditarMaterial"><i class="material-icons">edit</i></button></td>
                                 <td><div class="switch">    <label>            <input type="checkbox">      <span class="lever"></span>          </label>  </div></td>
                             </tr>
                             <tr>
                                 <td>Prueba</td>
                                 <td>Prueba</td>
                                 <td>Prueba</td>
+                                <td><button class="waves-effect amber accent-3 btn modal-trigger"  href="#modalEditarMaterial"><i class="material-icons">edit</i></button></td>
                                 <td><div class="switch">    <label>            <input type="checkbox">      <span class="lever"></span>          </label>  </div></td>
                             </tr>
                             </tbody>
