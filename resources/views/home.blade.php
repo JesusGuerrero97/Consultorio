@@ -3,7 +3,8 @@
 
     @section('header')
         @parent
-         <h1>El poncho se la come machin todos los dias</h1>
+       
+         <h1>El poncho se come la del chuyito machin todos los dias </h1>
         @section('footer')
             @parent
         @endsection
