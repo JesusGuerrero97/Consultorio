@@ -18,12 +18,12 @@
          <div class="">
             <div class="card">
             <div class="row mrg2">
-                    <div class="input-field col m6">
+                    <div class="input-field col m9">
                         <i class="material-icons prefix">search</i>
                         <input id="busMedicamento" type="text" class="validate">
                         <label for="busMedicamento">Medicamento</label> 
                     </div>
-                    <div class="input-field col m6">
+                    <div class="input-field col m3">
                         <button class="waves-effect waves-light btn modal-trigger" data-target="agMedicamento">Agregar medicamentos</button>
                         <!-- Modal Structure -->
                         <form action="">
