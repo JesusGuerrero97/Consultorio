@@ -45,11 +45,11 @@ Route::get('/almacen',function(){
 
 //RUTAS EMPLEADOS
 Route::get('/RH_Empleados',function(){
-    return view('RH_Empleados');
+    return view('empleados');
 })->name('Empleados');
 
-Route::get('/Configuracion_Usuarios',function(){
-    return view('Configuracion_Usuarios');
+Route::get('/usuarios',function(){
+    return view('usuarios');
 });
 
 //RUTAS DE PROVEEDORES
@@ -64,4 +64,9 @@ Route::get('/tablaProveedor',function(){
 //TABLA DE REPORTES
 Route::get('/reportes',function(){
     return view('reportes');
+});
+
+//RUTAS DE CRM
+Route::get('/crm',function(){
+    return view('crm');
 });

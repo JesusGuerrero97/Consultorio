@@ -17,7 +17,7 @@
        
          <div class="">
             <div class="card">
-            <div class="row mrg2">
+                <div class="row mrg2">
                     <div class="input-field col m9">
                         <i class="material-icons prefix">search</i>
                         <input id="busMedicamento" type="text" class="validate">

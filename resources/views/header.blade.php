@@ -60,9 +60,9 @@
             <li><a class="" href="{{url('home')}}"><i class="material-icons">calendar_today</i>Citas</a></li>
             <li><a class="" href="{{url('almacen')}}"><i class="material-icons">list_alt</i>Almacén</a></li>
             <li><a class="" href="{{url('medicamentos')}}"><i class="material-icons">local_hospital</i>Medicamentos</a></li>
-            <li><a class="" href="{{url('home')}}"><i class="material-icons">folder_shared</i>CRM</a></li>
+            <li><a class="" href="{{url('crm')}}"><i class="material-icons">folder_shared</i>CRM</a></li>
             <li><a class="" href="{{url('tablaProveedor')}}"><i class="material-icons">local_shipping</i>Proveedores</a></li>
-            <li><a class="" href="{{url('Configuracion_Usuarios')}}"><i class="material-icons">account_circle</i>Usuarios</a></li>
+            <li><a class="" href="{{url('usuarios')}}"><i class="material-icons">account_circle</i>Usuarios</a></li>
             <li><a class="" href="{{url('reportes')}}"><i class="material-icons">insert_chart</i>Reportes</a></li>
             <li><a class="" href="{{url('home')}}"><i class="material-icons">build</i>Configuración</a></li>
         </ul>
