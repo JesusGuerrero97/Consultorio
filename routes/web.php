@@ -16,14 +16,14 @@ Route::get('/', function () {
 });
 
 //RUTAS DE LOGIN
-Route::get('/log',function (){
-    return view('login');
-});
+Route::get('/email',function(){
+    return view('auth/passwords/email2');
+})->name('email2');
 
 //RUTAS DE HOME
 Route::get('/home',function(){
     return view('home');
-});
+})->name('home')->middleware('auth');
 
 //RUTAS DE MEDICAMENTOS
 Route::get('/medicamentos',function(){
@@ -70,3 +70,6 @@ Route::get('/reportes',function(){
 Route::get('/crm',function(){
     return view('crm');
 });
+
+
+Auth::routes();

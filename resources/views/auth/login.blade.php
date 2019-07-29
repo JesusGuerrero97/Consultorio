@@ -35,34 +35,38 @@
     </style>
 </head>
 <body class="text-center">
-<div class="container" ng-controller="ctrl">
-      <form class="bc form-signin" method="POST" action="">
+<div class="container">
+      <form class="bc form-signin" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <img class="imgen" src="{{asset('img/logo.jpg')}}" alt="" width="180" height="140">
             <div class="row">
               <div class="input-field col m12">
-                <i class="material-icons prefix">account_box</i>
-                <input  class="{{ $errors->has('name') ? 'invalid' : '' }}" id="Usuario" autocomplete="off" type="text" name="name" ng-model="usuario">
-                <label for="Usuario">Usuario</label>
+                <i class="  material-icons prefix">email</i>
+                <input  class="{{ $errors->has('email') ? 'invalid' : '' }}" id="email" autocomplete="off" type="email" name="email" value="{{ old('email') }}">
+                <label for="email">Correo</label>
               </div>
-              <span class="grey-text alert"> {{ $errors->first('name', ':message') }}</span>
+              <span class="red-text alert"> {{ $errors->first('email', ':message') }}</span>
             </div>
             <div class="row">
               <div class="input-field col m12">
                 <i class="material-icons prefix">https</i>
                 <input class="{{ $errors->has('password') ? 'invalid' : '' }}" id="contraseña" type="password" name="password" ng-model="password">
                 <label for="contraseña">Contraseña</label>
+                <span class="red-text alert"> {{ $errors->first('password', ':message') }} </span>
               </div>
-              <span class="grey-text alert"> {{ $errors->first('password', ':message') }} </span>
-              <div class="col m6">
+              
+            </div>
+            <div class="row">
+              <div class="col m12">
                 <button class="waves-effect waves-light btn blanco" type="submit">Iniciar Sesion</button>
-              </div>
-              <div class="col m6">
-                <button  type="button" class="waves-effect waves-light red btn blanco">Cancelar</button>
               </div>
             </div>
             
-            <p class="center-align light-blue-text  ">¿Olvidaste tu contraseña? Contacta al administrador.</p>
+            <div class="center-align">
+                <a class="light-blue-text" href="{{ route('password.request') }}">
+                <u>¿Olvidaste tu contraseña?</u></a>
+            </div>
+            
           </form>
     </div>
 

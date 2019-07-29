@@ -43,7 +43,11 @@
                     <ul id="" class="right hide-on-med-and-down">
                         <li><a href="sass.html">Usuario:</a></li>
                         <li><a href="badges.html">Administrador</a></li>
-                        <li><a href="collapsible.html">Cerrar Sesión</a></li>
+                        <li><form method="POST" action="{{ route('logout') }}">
+                            {{csrf_field()}}
+                            <button class="btn red">Cerrar Sesión</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -55,16 +59,16 @@
         <ul id="sidenav-1" class="sidenav sidenav-fixed white">
             <li><img class="imgen" src="{{asset('img/logo.jpg')}}" alt="" width="180" height="140"></li>
             <hr>
-            <li><a class="" href="{{url('RH_Empleados')}}"><i class="material-icons">supervisor_account</i>Empleados</a></li>
-            <li><a class="" href="{{url('pacientes')}}"><i class="material-icons">accessibility</i>Pacientes</a></li>
-            <li><a class="" href="{{url('home')}}"><i class="material-icons">calendar_today</i>Citas</a></li>
-            <li><a class="" href="{{url('almacen')}}"><i class="material-icons">list_alt</i>Almacén</a></li>
-            <li><a class="" href="{{url('medicamentos')}}"><i class="material-icons">local_hospital</i>Medicamentos</a></li>
-            <li><a class="" href="{{url('crm')}}"><i class="material-icons">folder_shared</i>CRM</a></li>
-            <li><a class="" href="{{url('tablaProveedor')}}"><i class="material-icons">local_shipping</i>Proveedores</a></li>
-            <li><a class="" href="{{url('usuarios')}}"><i class="material-icons">account_circle</i>Usuarios</a></li>
-            <li><a class="" href="{{url('reportes')}}"><i class="material-icons">insert_chart</i>Reportes</a></li>
-            <li><a class="" href="{{url('home')}}"><i class="material-icons">build</i>Configuración</a></li>
+            <li><a href="{{url('RH_Empleados')}}"><i class="material-icons">supervisor_account</i>Empleados</a></li>
+            <li><a href="{{url('pacientes')}}"><i class="material-icons">accessibility</i>Pacientes</a></li>
+            <li><a href="{{url('home')}}"><i class="material-icons">calendar_today</i>Citas</a></li>
+            <li><a href="{{url('almacen')}}"><i class="material-icons">list_alt</i>Almacén</a></li>
+            <li><a href="{{url('medicamentos')}}"><i class="material-icons">local_hospital</i>Medicamentos</a></li>
+            <li><a href="{{url('crm')}}"><i class="material-icons">folder_shared</i>CRM</a></li>
+            <li><a href="{{url('tablaProveedor')}}"><i class="material-icons">local_shipping</i>Proveedores</a></li>
+            <li><a href="{{url('usuarios')}}"><i class="material-icons">account_circle</i>Usuarios</a></li>
+            <li><a href="{{url('reportes')}}"><i class="material-icons">insert_chart</i>Reportes</a></li>
+            <li><a href="{{url('home')}}"><i class="material-icons">build</i>Configuración</a></li>
         </ul>
         <!--<ul id="sidenav-1" class="sidenav sidenav-fixed">
                 <li><a href="https://github.com/dogfalo/materialize/" target="_blank">Github</a></li>
