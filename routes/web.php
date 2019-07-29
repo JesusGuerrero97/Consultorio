@@ -47,7 +47,13 @@ Route::get('/almacen',function(){
 Route::get('/RH_Empleados',function(){
     return view('empleados');
 })->name('Empleados');
+Route::post('/save', 'empleados@store');
+Route::get('/RH_Empleados', 'empleados@show');
+Route::get('/RH_Empleados/{id}', 'empleados@edit');
+Route::post('/modificar/{id}', 'empleados@update');
+Route::post('/desactivar/{id}', 'empleados@desactivar');
 
+//RUTAS USUARIOS
 Route::get('/usuarios',function(){
     return view('usuarios');
 });
@@ -70,3 +76,4 @@ Route::get('/reportes',function(){
 Route::get('/crm',function(){
     return view('crm');
 });
+

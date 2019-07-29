@@ -1,13 +1,12 @@
 @section('header')
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Consultorio</title>
     <link rel="stylesheet" href="{{asset('css/materialize.min.css')}}">
-
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -55,7 +54,7 @@
         <ul id="sidenav-1" class="sidenav sidenav-fixed white">
             <li><img class="imgen" src="{{asset('img/logo.jpg')}}" alt="" width="180" height="140"></li>
             <hr>
-            <li><a class="" href="{{url('RH_Empleados')}}"><i class="material-icons">supervisor_account</i>Empleados</a></li>
+            <li><a href="/RH_Empleados"><i class="material-icons">supervisor_account</i>Empleados</a></li>
             <li><a class="" href="{{url('pacientes')}}"><i class="material-icons">accessibility</i>Pacientes</a></li>
             <li><a class="" href="{{url('home')}}"><i class="material-icons">calendar_today</i>Citas</a></li>
             <li><a class="" href="{{url('almacen')}}"><i class="material-icons">list_alt</i>Almacén</a></li>
