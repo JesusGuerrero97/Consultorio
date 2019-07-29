@@ -15,9 +15,9 @@
             display: flex;
             -ms-flex-align: center;
             align-items: center;
-            padding-top: 40px;
-            padding-bottom: 40px;
             background-color: #f5f5f5;
+            height:100vh;
+            overflow:hidden;
         }
 
         .blanco{
@@ -27,24 +27,23 @@
         {
             display:block;
             margin:auto;
-            margin-top:10%;
             margin-bottom:5%;
         }
 
         .form-signin {
-        width: 100%;
-        max-width: 450px;
-        padding: 15px;
-        margin: auto;
+            width: 100%;
+            max-width: 450px;
+            padding: 15px;
+            margin: auto;
         }
         
         .form-signin .form-control {
-        position: relative;
-        box-sizing: border-box;
-        height: auto;
-        padding: 10px;
-        font-size: 16px;
-    }
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
