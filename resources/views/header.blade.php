@@ -26,7 +26,7 @@
         #sidenav-1
         {
             /*margin-top:4.6%;*/
-            width:34.7vh;
+            width:33vh;
         }
         .prli
         {
