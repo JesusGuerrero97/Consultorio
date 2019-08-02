@@ -69,6 +69,8 @@ Route::get('/tablaProveedor',function(){
     return view('tablaProveedor');
 });
 
+Route::get('/tablaProveedor','Proveedores@show');
+
 //TABLA DE REPORTES
 Route::get('/reportes',function(){
     return view('reportes');
