@@ -52,6 +52,8 @@ Route::get('/RH_Empleados', 'empleados@show');
 Route::get('/RH_Empleados/{id}', 'empleados@edit');
 Route::post('/modificar/{id}', 'empleados@update');
 Route::post('/desactivar/{id}', 'empleados@desactivar');
+Route::post('/activar/{id}', 'empleados@activar');
+//Route::get('/traer', 'empleados@show2');
 
 //RUTAS USUARIOS
 Route::get('/usuarios',function(){
