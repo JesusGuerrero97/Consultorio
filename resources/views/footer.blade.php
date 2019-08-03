@@ -11,8 +11,9 @@
     <script>
          $(document).ready(function(){
  
-	$('#sidenav-1').sidenav({ edge: 'left' });
-});
+            $('#sidenav-1').sidenav({ edge: 'left' });
+            $(".dropdown-trigger").dropdown({coverTrigger:false});
+        });
     </script>
 </body>
 </html>
