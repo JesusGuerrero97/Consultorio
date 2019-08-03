@@ -28,7 +28,11 @@ class Empleados extends Controller
     	$empleados = Empleado::all();
     	return view('/empleados', compact('empleados'));
     }
-
+    public function show2()
+    {
+        $empleados = Empleado::all();
+        return $empleados;
+    }
     public function edit($id)
     {
 		$editar = Empleado::find($id);
@@ -57,4 +61,12 @@ class Empleados extends Controller
 		$data->save();
 		return $request->all();
 	}
+    public function activar($id, Request $request)
+    {
+        $data = Empleado::find($id);
+        $data->status=$request->input('estatus');
+
+        $data->save();
+        return $request->all();
+    }
 }
