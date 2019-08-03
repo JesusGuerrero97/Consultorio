@@ -69,6 +69,10 @@ Route::get('/tablaProveedor',function(){
 
 Route::get('/tablaProveedor','Proveedores@show');
 
+Route::post('/GuardarPro', 'Proveedores@store');
+
+
+
 //TABLA DE REPORTES
 Route::get('/reportes',function(){
     return view('reportes');

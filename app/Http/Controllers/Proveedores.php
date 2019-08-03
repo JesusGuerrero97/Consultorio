@@ -36,7 +36,18 @@ class Proveedores extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new Proveedor();
+        /*$data->empresa=$request->input('empresa');
+        $data->direccion=$request->input('direccion');
+        $data->telefono=$request->input('telefono');
+        $data->save();
+        return $request -> all();*/
+        DB::table('proveedores')->insert(
+            ['empresa' => $request->input('empresa'),
+            'direccion' => $request->input('direccion'),
+            'telefono' => $request->input('telefono')]
+        );
+        return $request;
     }
 
     /**
