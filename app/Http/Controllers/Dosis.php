@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Proveedor as Proveedor;
-use DB;
-class Proveedores extends Controller
+use App\Dosi;
+
+class Dosis extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,18 +36,11 @@ class Proveedores extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Proveedor();
-        /*$data->empresa=$request->input('empresa');
-        $data->direccion=$request->input('direccion');
-        $data->telefono=$request->input('telefono');
-        $data->save();
-        return $request -> all();*/
-        DB::table('proveedores')->insert(
-            ['empresa' => $request->input('empresa'),
-            'direccion' => $request->input('direccion'),
-            'telefono' => $request->input('telefono')]
-        );
-        return $request;
+        $data = new Dosi();
+    	$data->descripcion=$request->input('descripcion');
+    	$data->id_medicamento=$request->input('id_medicamento');
+    	$data->save();
+        return $request->all();      
     }
 
     /**
@@ -56,10 +49,9 @@ class Proveedores extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $proveedores = DB::table('proveedores')->get();
-        return view('tablaProveedor', compact('proveedores'));
+        //
     }
 
     /**
@@ -80,9 +72,15 @@ class Proveedores extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = Dosi::find($request->input('id'));
+    	$data->descripcion=$request->input('descripcion');
+    	$data->id_medicamento=$request->input('id_medicamento');
+        //$data->status=$request->input('estatus');
+        
+    	$data->save();
+        return $request->all();
     }
 
     /**

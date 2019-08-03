@@ -26,9 +26,11 @@ Route::get('/home',function(){
 })->name('home')->middleware('auth');
 
 //RUTAS DE MEDICAMENTOS
-Route::get('/medicamentos',function(){
-    return view('medicamentos');
-});
+Route::get('/medicamentos','medicamentos@index')->name('medicamentos');
+Route::post('/saveMedicamento', 'medicamentos@store');
+Route::post('/editMedicamento','medicamentos@update');
+Route::post('/saveDosis','dosis@store');
+Route::post('/editDosis','dosis@update');
 
 //RUTAS DE PACIENTES
 Route::get('/pacientes',function(){
@@ -71,6 +73,10 @@ Route::get('/tablaProveedor',function(){
 });
 
 Route::get('/tablaProveedor','Proveedores@show');
+
+Route::post('/GuardarPro', 'Proveedores@store');
+
+
 
 //TABLA DE REPORTES
 Route::get('/reportes',function(){

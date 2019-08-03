@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Proveedor as Proveedor;
-use DB;
-class Proveedores extends Controller
+use App\Contacto;
+
+class Contactos extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,18 +36,7 @@ class Proveedores extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Proveedor();
-        /*$data->empresa=$request->input('empresa');
-        $data->direccion=$request->input('direccion');
-        $data->telefono=$request->input('telefono');
-        $data->save();
-        return $request -> all();*/
-        DB::table('proveedores')->insert(
-            ['empresa' => $request->input('empresa'),
-            'direccion' => $request->input('direccion'),
-            'telefono' => $request->input('telefono')]
-        );
-        return $request;
+        //
     }
 
     /**
@@ -56,10 +45,9 @@ class Proveedores extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $proveedores = DB::table('proveedores')->get();
-        return view('tablaProveedor', compact('proveedores'));
+        //
     }
 
     /**

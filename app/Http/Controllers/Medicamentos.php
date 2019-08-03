@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Proveedor as Proveedor;
+use App\Medicamento;
 use DB;
-class Proveedores extends Controller
+
+class Medicamentos extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,12 @@ class Proveedores extends Controller
      */
     public function index()
     {
-        //
+        $medicamentos = Medicamento::all();
+        $dosis = DB::table('dosis')
+        ->join('medicamentos','dosis.id_medicamento','=','medicamentos.id')
+        ->select('medicamentos.nombre','dosis.descripcion','dosis.id','dosis.id_medicamento')
+        ->get();
+        return view('medicamentos',compact('medicamentos','dosis'));
     }
 
     /**
@@ -36,18 +42,12 @@ class Proveedores extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Proveedor();
-        /*$data->empresa=$request->input('empresa');
-        $data->direccion=$request->input('direccion');
-        $data->telefono=$request->input('telefono');
-        $data->save();
-        return $request -> all();*/
-        DB::table('proveedores')->insert(
-            ['empresa' => $request->input('empresa'),
-            'direccion' => $request->input('direccion'),
-            'telefono' => $request->input('telefono')]
-        );
-        return $request;
+        $data = new Medicamento();
+    	$data->nombre=$request->input('nombre');
+    	$data->descripcion=$request->input('descripcion');
+    	$data->cantidad=$request->input('cantidad');
+    	$data->save();
+        return $request->all(); 
     }
 
     /**
@@ -56,10 +56,9 @@ class Proveedores extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $proveedores = DB::table('proveedores')->get();
-        return view('tablaProveedor', compact('proveedores'));
+        //
     }
 
     /**
@@ -70,7 +69,7 @@ class Proveedores extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -80,11 +79,18 @@ class Proveedores extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = Medicamento::find($request->input('id'));
+    	$data->nombre=$request->input('nombre');
+    	$data->descripcion=$request->input('descripcion');
+    	$data->cantidad=$request->input('cantidad');
+        //$data->status=$request->input('estatus');
+        
+    	$data->save();
+        return $request->all();    
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
