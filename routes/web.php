@@ -26,9 +26,15 @@ Route::get('/home',function(){
 })->name('home')->middleware('auth');
 
 //RUTAS DE MEDICAMENTOS
-Route::get('/medicamentos',function(){
-    return view('medicamentos');
-});
+Route::get('/medicamentos','medicamentos@index')->name('medicamentos');
+Route::post('/saveMedicamento', 'medicamentos@store');
+Route::post('/editMedicamento','medicamentos@update');
+Route::post('/habilitar','medicamentos@habilitar');
+Route::post('/deshabilitar','medicamentos@deshabilitar');
+Route::post('/saveDosis','dosis@store');
+Route::post('/editDosis','dosis@update');
+Route::post('/deleteDosis','dosis@destroy');
+
 
 //RUTAS DE PACIENTES
 Route::get('/pacientes',function(){
@@ -49,7 +55,6 @@ Route::get('/RH_Empleados',function(){
 })->name('Empleados');
 Route::post('/save', 'empleados@store');
 Route::get('/RH_Empleados', 'empleados@show');
-Route::get('/RH_Empleados/{id}', 'empleados@edit');
 Route::post('/modificar/{id}', 'empleados@update');
 Route::post('/desactivar/{id}', 'empleados@desactivar');
 Route::post('/activar/{id}', 'empleados@activar');
@@ -59,6 +64,8 @@ Route::post('/activar/{id}', 'empleados@activar');
 Route::get('/usuarios',function(){
     return view('usuarios');
 });
+Route::post('/guardar', 'usuarios@store');
+Route::get('/usuarios', 'usuarios@show');
 
 //RUTAS DE PROVEEDORES
 Route::get('/contacto',function(){
