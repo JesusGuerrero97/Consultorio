@@ -29,8 +29,12 @@ Route::get('/home',function(){
 Route::get('/medicamentos','medicamentos@index')->name('medicamentos');
 Route::post('/saveMedicamento', 'medicamentos@store');
 Route::post('/editMedicamento','medicamentos@update');
+Route::post('/habilitar','medicamentos@habilitar');
+Route::post('/deshabilitar','medicamentos@deshabilitar');
 Route::post('/saveDosis','dosis@store');
 Route::post('/editDosis','dosis@update');
+Route::post('/deleteDosis','dosis@destroy');
+
 
 //RUTAS DE PACIENTES
 Route::get('/pacientes',function(){
