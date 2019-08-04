@@ -55,7 +55,6 @@ Route::get('/RH_Empleados',function(){
 })->name('Empleados');
 Route::post('/save', 'empleados@store');
 Route::get('/RH_Empleados', 'empleados@show');
-Route::get('/RH_Empleados/{id}', 'empleados@edit');
 Route::post('/modificar/{id}', 'empleados@update');
 Route::post('/desactivar/{id}', 'empleados@desactivar');
 Route::post('/activar/{id}', 'empleados@activar');
@@ -65,6 +64,8 @@ Route::post('/activar/{id}', 'empleados@activar');
 Route::get('/usuarios',function(){
     return view('usuarios');
 });
+Route::post('/guardar', 'usuarios@store');
+Route::get('/usuarios', 'usuarios@show');
 
 //RUTAS DE PROVEEDORES
 Route::get('/contacto',function(){

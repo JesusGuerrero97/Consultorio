@@ -84,7 +84,6 @@
 							  	</div>
                             </div>
                             <div class="modal-footer">
-                                <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agregar</a> -->
                                 <button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
 								<button type="submit" class="btn modal-close" ng-click="guardar()">Guardar</button>
                             </div>
@@ -119,10 +118,9 @@
 										<td scope="col">[[empleado.direccion]]</td>
 										<td scope="col">[[empleado.telefono]]</td>
 										<td scope="col">[[empleado.numero_seguro_social]]</td>
-										<td value="[[empleado.id]]" ng-model="id.id"><li class="waves-effect"><a href="#idModalModificar" ng-click="editar(id.id)" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
+										<td><li class="waves-effect"><a href="#idModalModificar" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
 										<td><div class="switch"><label><input type="checkbox" ng-click="desactivar()"><span class="lever"></span></label> </div></td>
 						      		</tr>
-						      		
 							     </tbody>  
 							</table>
 						</div>
@@ -338,6 +336,13 @@
 								{	
 									console.log($scope.empleado);
 									$scope.empleado={};
+									swal({
+									  title: "Agregado Exitosamente",
+									  text: "Click boton Ok para continuar.",
+									  icon: "success",									  
+									}).then((value) =>{
+										window.location.reload();
+									});
 								},
 								function(errorResponse)
 								{
