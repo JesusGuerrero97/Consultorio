@@ -13,6 +13,13 @@
             .mrg2{
                 padding: 1%;   
             }
+
+            .modal
+            {
+            	width: 50% !important; 
+            	height: 70% !important;
+            	overflow-y: none !important;
+            }
         </style>
 		<div class="">
 		<div ng-controller="crtl">
@@ -107,7 +114,8 @@
 			</div>
 			<ng-pagination-control pagination-id="empleados"></ng-pagination-control>
 			<div id="idModalModificar" class="modal" tabindex="-1" role="content">
-				<div class="modal-content modal-sm" role="document">
+				<div class="modal-content modal-sm center-align" role="document">
+					<h3 class="">Modificar</h3>
 					<div class="row">
 					    <form class="col s12">
 					      <div class="row">
