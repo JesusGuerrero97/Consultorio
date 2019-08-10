@@ -62,6 +62,7 @@ Route::get('/usuarios',function(){
 });
 Route::post('/guardar', 'usuarios@store');
 Route::get('/usuarios', 'usuarios@show');
+Route::post('/modificar/{id}', 'usuarios@update');
 
 //RUTAS DE PROVEEDORES
 Route::get('/contacto',function(){
