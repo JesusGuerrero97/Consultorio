@@ -22,11 +22,6 @@
             {
             	height: 50%;
             }
-            .modal 
-            { 
-            	width: 30% !important ; 
-            	height: 50% !important ;
-            } 
         </style>
 		<div class="">
 		<div ng-controller="crtl">
@@ -160,6 +155,10 @@
 			<div ng-if="deshabilitar">
 				<ng-pagination-control pagination-id="empleadosoff" ></ng-pagination-control>
 			</div>
+			<ng-pagination-control pagination-id="empleados"></ng-pagination-control>
+			<div id="idModalModificar" class="modal" tabindex="-1" role="content">
+				<div class="modal-content modal-sm center-align" role="document">
+					<h3 class="">Modificar</h3>
 			<div id="idModalModificar" class="modal">
 				<div class="modal-content">
 					<div class="row">

@@ -90,6 +90,23 @@ class Medicamentos extends Controller
     	$data->save();
         return $request->all();    
     }
+    public function habilitar(Request $request)
+    {
+        $data = Medicamento::find($request[0]);
+        $data->status = 1;
+        $data->save();
+        return 1;
+        
+    }
+
+    public function deshabilitar(Request $request)
+    {
+        $data = Medicamento::find($request[0]);
+        $data->status = 0;
+        $data->save();
+        return 0;
+        
+    }
     
     /**
      * Remove the specified resource from storage.

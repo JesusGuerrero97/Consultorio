@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Dosi;
 
-class Dosis extends Controller
+class Reportes extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,15 +33,30 @@ class Dosis extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeEmpleados(Request $request)
     {
-        $data = new Dosi();
-    	$data->descripcion=$request->input('descripcion');
-    	$data->id_medicamento=$request->input('id_medicamento');
-    	$data->save();
-        return $request->all();      
+        
     }
 
+    public function storePacientes(Request $request)
+    {
+        
+    }
+
+    public function storeCitas(Request $request)
+    {
+        
+    }
+
+    public function storeMedicamentos(Request $request)
+    {
+        
+    }
+
+    public function storeProveedores(Request $request)
+    {
+        
+    }
     /**
      * Display the specified resource.
      *
@@ -72,15 +86,9 @@ class Dosis extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $data = Dosi::find($request->input('id'));
-    	$data->descripcion=$request->input('descripcion');
-    	$data->id_medicamento=$request->input('id_medicamento');
-        //$data->status=$request->input('estatus');
-        
-    	$data->save();
-        return $request->all();
+        //
     }
 
     /**
@@ -89,13 +97,8 @@ class Dosis extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $data = Dosi::find($request[0]);
-
-        if(Dosi::destroy($data->id))
-        {
-            return redirect()->route('medicamentos');
-        }
+        //
     }
 }
