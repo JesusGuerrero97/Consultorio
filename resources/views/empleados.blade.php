@@ -13,15 +13,29 @@
             .mrg2{
                 padding: 1%;   
             }
+            .nav-wrapper2
+            {
+            	background-color: white !important;
+            	width: 15%;
+            }
+            .tabs
+            {
+            	height: 50%;
+            }
         </style>
 		<div class="">
 		<div ng-controller="crtl">
 			<div class="card">
             <div class="row mrg2">
             	<!-- Buscar empleados -->
-                <div class="input-field col m9">
+                <div class="input-field col m9" ng-show="habilitar">
                     <i class="material-icons prefix">search</i>
-                    <input name="buscarEmpleado" type="text" ng-pagination-search="empleados">
+                    <input name="buscarEmpleado" type="text" ng-pagination-search="empleadoson" >
+                    <label for="busMedicamento">Empleado</label> 
+                </div>
+                <div class="input-field col m9" ng-show="deshabilitar">
+                    <i class="material-icons prefix">search</i>
+                    <input name="buscarEmpleado" type="text" ng-pagination-search="empleadosoff" >
                     <label for="busMedicamento">Empleado</label> 
                 </div>
                 <div class="input-field col m3">
@@ -65,7 +79,6 @@
 							  	</div>
                             </div>
                             <div class="modal-footer">
-                                <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agregar</a> -->
                                 <button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
 								<button type="submit" class="btn modal-close" ng-click="guardar()">Guardar</button>
                             </div>
@@ -75,39 +88,79 @@
             </div>
             </div>
 	        <div class="card">
-	        	<div class="row mrg">
-			        <div class="col m12">
-				        <table class="table table-striped table-hover">
-							<thead>
-								<tr>
-						      		<th scope="col">Nombre</th>
-									<th scope="col">Apellidos</th>
-									<th scope="col">Domicilio</th>
-									<th scope="col">Telefono</th>
-									<th scope="col">Número seguro social</th>
-									<th scope="col">Editar</th>
-									<th scope="col">Desabilitar</th>
-						    	</tr>
-						  	</thead>
-						  	<tbody>
-					    	    <tr ng-pagination="empleado in empleados" ng-pagination-size="5" ng-click="cargarDatos([[empleado.id]])">
-						    	    <td scope="col">[[empleado.nombre]]</td>
-						    	    <td scope="col">[[empleado.apellido]]</td>
-									<td scope="col">[[empleado.direccion]]</td>
-									<td scope="col">[[empleado.telefono]]</td>
-									<td scope="col">[[empleado.numero_seguro_social]]</td>
-									<td value="[[empleado.id]]" ng-model="id.id"><li class="waves-effect"><a href="#idModalModificar" ng-click="editar(id.id)" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
-									<td><div class="switch"><label><input type="checkbox" ng-click="desactivar()"><span class="lever"></span></label> </div></td>
-					      		</tr>
-					      		
-						     </tbody>  
-						</table>
+		     	<ul class="tabs">
+		        	<li class="tab col s3"><a href="#test1" class="active" ng-click="habilitados()">Habilitados</a></li>
+		        	<li class="tab col s3"><a href="#test2" ng-click="deshabilitados()">Inhabilitados</a></li>
+		      	</ul>
+        			<div class="row mrg" ng-show="habilitar">
+				        <div class="col m12">
+					        <table class="table table-striped table-hover">
+								<thead>
+									<tr>
+							      		<th scope="col">Nombreee</th>
+										<th scope="col">Apellidos</th>
+										<th scope="col">Domicilio</th>
+										<th scope="col">Telefono</th>
+										<th scope="col">Número seguro social</th>
+										<th scope="col">Editar</th>
+										<th scope="col">Desabilitar</th>
+							    	</tr>
+							  	</thead>
+							  	<tbody>
+						    	    <tr ng-pagination="empleado in empleadoson" ng-pagination-size="5" ng-click="cargarDatos([[empleado.id]])">
+							    	    <td scope="col">[[empleado.nombre]]</td>
+							    	    <td scope="col">[[empleado.apellido]]</td>
+										<td scope="col">[[empleado.direccion]]</td>
+										<td scope="col">[[empleado.telefono]]</td>
+										<td scope="col">[[empleado.numero_seguro_social]]</td>
+										<td><li class="waves-effect"><a href="#idModalModificar" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
+										<td><div class="switch"><label><input type="checkbox" ng-click="desactivar()"><span class="lever"></span></label> </div></td>
+						      		</tr>
+							     </tbody>  
+							</table>
+						</div>
 					</div>
-				</div>
+					<div class="row mrg" ng-show="deshabilitar">
+				        <div class="col m12">
+					        <table class="table table-striped table-hover">
+								<thead>
+									<tr>
+							      		<th scope="col">Nombre</th>
+										<th scope="col">Apellidos</th>
+										<th scope="col">Domicilio</th>
+										<th scope="col">Telefono</th>
+										<th scope="col">Número seguro social</th>
+										<th scope="col">Habilitar</th>
+							    	</tr>
+							  	</thead>
+							  	<tbody>
+						    	    <tr ng-pagination="empleado in empleadosoff" ng-pagination-size="5" ng-click="cargarDatos([[empleado.id]])">
+							    	    <td scope="col">[[empleado.nombre]]</td>
+							    	    <td scope="col">[[empleado.apellido]]</td>
+										<td scope="col">[[empleado.direccion]]</td>
+										<td scope="col">[[empleado.telefono]]</td>
+										<td scope="col">[[empleado.numero_seguro_social]]</td>
+										
+										<td><div class="switch"><label><input type="checkbox" ng-click="activar()"><span class="lever"></span></label> </div></td>
+						      		</tr>
+						      		
+							     </tbody>  
+							</table>
+						</div>
+					</div>
+			</div>
+			<div ng-if="habilitar">
+				<ng-pagination-control pagination-id="empleadoson" ></ng-pagination-control>
+			</div>
+			<div ng-if="deshabilitar">
+				<ng-pagination-control pagination-id="empleadosoff" ></ng-pagination-control>
 			</div>
 			<ng-pagination-control pagination-id="empleados"></ng-pagination-control>
 			<div id="idModalModificar" class="modal" tabindex="-1" role="content">
-				<div class="modal-content modal-sm" role="document">
+				<div class="modal-content modal-sm center-align" role="document">
+					<h3 class="">Modificar</h3>
+			<div id="idModalModificar" class="modal">
+				<div class="modal-content">
 					<div class="row">
 					    <form class="col s12">
 					      <div class="row">
@@ -162,15 +215,81 @@
 				{
 					$scope.empleado={};
 					$scope.empleadomodificar={};
+					$scope.empleadosInhabilitados={};
+					$scope.empleadosoff=[];
+					$scope.empleadoson=[];
+					$scope.empleados={};
 
-					// Exrayendo la consulta a un arreglo
-					$scope.empleados= (<?php echo $empleados;?>);
-					console.log("Empleados: " , $scope.empleados);
+					//Mostrar las tablas por habilitados e inhabilitados
+					$scope.habilitar=true;
+					$scope.deshabilitar=false;
 
-					$scope.probar=function()
+					$scope.habilitados=function()
 					{
-						
+						$scope.habilitar=true;
+						$scope.deshabilitar=false;
 					}
+
+					$scope.deshabilitados=function()
+					{
+						$scope.deshabilitar=true;
+						$scope.habilitar=false;
+					}
+
+				
+					// // Empleados habilitados
+					// $scope.j=0;
+					// $scope.estatus2=1;
+					// $http.get('/traer').then
+					// (
+					// 	function(response)
+					// 		{	
+					// 			$scope.empleados=response.data;
+					// 			console.log("empleados: " , $scope.empleados);
+					// 			for ($scope.j ; $scope.j < $scope.empleados.length; $scope.j ++) 
+					// 			{
+					// 				if($scope.empleados[$scope.j].status==$scope.estatus2)
+					// 				{
+					// 					//Pasar los datos a los inputs
+					// 					console.log("imprimir: ", $scope.empleados[$scope.j]);
+					// 					$scope.empleadoson[$scope.j]==$scope.empleados[$scope.j];
+					// 				}
+					// 			}
+					// 			console.log("On: " , $scope.empleadoson);
+					// 		},
+					// 		function(errorResponse)
+					// 		{
+					// 			swal ( "Ocurrio un error" ,  "Faltan algunos datos" ,  "error" );
+					// 		}
+					// );
+
+					// Empleados habilitados
+					$scope.i=0;
+					$scope.estatus2=1;
+					$scope.empleados= (<?php echo $empleados;?>);
+					for ($scope.i ; $scope.i < $scope.empleados.length; $scope.i ++) 
+					{
+						if($scope.empleados[$scope.i].status==$scope.estatus2)
+						{
+							//Pasar los datos a los inputs
+							$scope.empleadoson.push($scope.empleados[$scope.i]);
+						}
+					}
+					console.log("On: " , $scope.empleadoson);
+
+					// Empleados inhabilitados
+					$scope.i=0;
+					$scope.estatus=0;
+					$scope.empleados= (<?php echo $empleados;?>);
+					for ($scope.i ; $scope.i < $scope.empleados.length; $scope.i ++) 
+					{
+						if($scope.empleados[$scope.i].status==$scope.estatus)
+						{
+							//Pasar los datos a los inputs
+							$scope.empleadosoff.push($scope.empleados[$scope.i]);
+						}
+					}
+					console.log("Off: " , $scope.empleadosoff);
 
 					// Funcion para cargar los datos a los inputs de modificar
 					$scope.cargarDatos=function(id)
@@ -197,6 +316,7 @@
 							}
 						}
 					}
+
 					// Funcion para guardar empleados
 					$scope.guardar=function()
 					{
@@ -215,16 +335,21 @@
 								{	
 									console.log($scope.empleado);
 									$scope.empleado={};
-									swal("Guardado Existosamente", "", "success");
-									// location.reload(100000);
+									swal({
+									  title: "Agregado Exitosamente",
+									  text: "Click boton Ok para continuar.",
+									  icon: "success",									  
+									}).then((value) =>{
+										window.location.reload();
+									});
 								},
 								function(errorResponse)
 								{
-									swal ( "Ocurrio un error" ,  "Faltan algunos datos" ,  "error" );
 								}
 							);
 						}
 					}
+
 					$scope.modificar=function()
 					{
 						$scope.empleadomodificar.estatus=1;
@@ -241,7 +366,13 @@
 								{
 									console.log($scope.empleadomodificar);
 									$scope.empleadomodificar={};
-									swal("Modificado Existosamente", "", "success");
+									swal({
+									  title: "Modificado Exitosamente",
+									  text: "Click boton Ok para continuar.",
+									  icon: "success",									  
+									}).then((value) =>{
+										window.location.reload();
+									});
 								},
 								function(errorResponse)
 								{
@@ -250,6 +381,7 @@
 							);
 						}
 					}
+
 					$scope.desactivar=function()
 					{
 						$scope.empleado.estatus=0;
@@ -258,6 +390,36 @@
 							function(response)
 							{
 								console.log("Se desactivo");
+								swal({
+									  title: "Desactivado Exitosamente",
+									  text: "Click boton Ok para continuar.",
+									  icon: "success",									  
+									}).then((value) =>{
+										window.location.reload();
+									});
+							},
+							function(errorResponse)
+							{
+								swal("Ocurrio un error", "error");
+							}
+						);
+					}
+
+					$scope.activar=function()
+					{
+						$scope.empleado.estatus=1;
+						$http.post('/activar/'+$scope.id, $scope.empleado).then
+						(
+							function(response)
+							{
+								console.log("Se activo");
+								swal({
+									  title: "Activado Exitosamente",
+									  text: "Click boton Ok para continuar.",
+									  icon: "success",									  
+									}).then((value) =>{
+										window.location.reload();
+									});
 							},
 							function(errorResponse)
 							{
@@ -267,11 +429,14 @@
 					}
 				});
 				// Iniciar el modal
-            	document.addEventListener('DOMContentLoaded', function() 
-            	{
-			    	var elems = document.querySelectorAll('.modal');
-			    	var instances = M.Modal.init(elems);
-			  	});
+        	 	$(document).ready(function(){
+			    $('.modal').modal({
+			    	dismissible: false
+			    });
+			  });
+			  	$(document).ready(function(){
+			    $('.tabs').tabs();
+			  });
             </script>
         @endsection
     @endsection   

@@ -14,105 +14,279 @@
                 padding: 1%;   
             }
         </style>
-    <div class="">
+<div class="">
+    <div ng-controller="crtl">
         <div class="card">
             <div class="row mrg2">
-                    <div class="input-field col m9">
-                        <i class="material-icons prefix">search</i>
-                        <input id="busMedicamento" type="text" class="validate">
-                        <label for="busMedicamento">Usuarios</label> 
-                    </div>
-                    <div class="input-field col m3">
-                        <button class="waves-effect waves-light btn modal-trigger" data-target="agMedicamento">Agregar Usuarios</button>
-                        <!-- Modal Structure -->
-                        <form action="">
-                            <div id="agMedicamento" class="modal">
-                                <div class="modal-content">
-                                    <h4 class="black-text center">Medicamento</h4>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="nomMedicamento" type="text" class="validate">
-                                            <label for="nomMedicamento">Nombre del medicamento</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input id="descMedicamento" type="text" class="validate">
-                                            <label for="descMedicamento">Descripción del medicamento</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input id="dosis" type="text" class="validate">
-                                            <label for="dosis">Dosis del medicamento</label>
-                                        </div>
+                <div class="input-field col m9">
+                    <i class="material-icons prefix">search</i>
+                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="usuarios2">
+                    <label for="busMedicamento">Usuarios</label> 
+                </div>
+                <div class="input-field col m3">
+                    <button class="waves-effect waves-light btn modal-trigger" data-target="modalAgregar">Agregar Usuarios</button>
+                    <!-- Modal Structure -->
+                    <form name="usuarios">
+                        <div id="modalAgregar" class="modal modal-fixed-footer">
+                            <div class="modal-content">
+                                <div class="card-header">
+                                <h4 class="black-text center">Agregar</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="large material-icons prefix">accessibility</i>
+                                        <select ng-model="usuario.idEmpleado">
+                                            <option value="" disabled selected>Seleccione al empleado</option>
+                                            <option value="[[empleados.id]]" ng-repeat="empleados in empleados2">[[empleados.nombre]]</option>
+                                        </select>
+                                        <label>Empleado</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="icon_prefix" placeholder="Nombre" type="text" class="validate" ng-model="usuario.name">
+                                        <label for="icon_prefix">Nombre</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">email</i>
+                                        <input id="icon_prefix" placeholder="Email" type="email" class="validate" ng-model="usuario.email">
+                                        <label for="icon_prefix">Email</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="icon_prefix" placeholder="Contraseña" type="password" class="validate" ng-model="contra.contrasena" >
+                                        <label for="icon_prefix">Contraseña</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="icon_prefix" placeholder="Confirmar contraseña" type="password" class="validate" ng-model="usuario.password">
+                                        <label for="icon_prefix">Confirmar contraseña</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">adjust</i>
+                                        <select ng-model="usuario.tipo"> 
+                                          <option value="" disabled selected>Seleccione</option>
+                                          <option value="Administrador">Administrador</option>
+                                          <option value="Empleado">Empleado</option>
+                                        </select>
+                                        <label>Tipo de usuario</label>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agregar</a>
-                                </div>
                             </div>
-                        </form>
-                        
-                     </div>
+                            <div class="modal-footer">
+                                <button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
+                                <button type="submit" class="btn modal-close" ng-click="guardar()">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                 </div>
+            </div>
+        </div>
+    	<div class="card">
+    		<div class="row mrg">
+		        <table>
+					<thead>
+						<tr>
+				      		<th scope="col">Usuario</th>
+							<th scope="col">Email</th>
+							<th scope="col">Tipo</th>
+                            <th scope="col">Editar</th>
+							<th scope="col">Desabilitar</th>
+				    	</tr>
+				  	</thead>
+				  	<tbody>
+			    	    <tr ng-pagination="usuario in usuarios2 " ng-pagination-size="5" ng-click="cargarDatos([[usuario.id]])">
+				    	   <td scope="col">[[usuario.name]]</td>
+                            <td scope="col">[[usuario.email]]</td>
+                            <td scope="col">[[usuario.tipo]]</td>
+							<td><li class="waves-effect"><a href="#idModalModificar" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
+							<td><div class="switch">    <label>            <input type="checkbox">      <span class="lever"></span>          </label>  </div></td>
+			      		</tr>
+				     </tbody>
+				</table>
+			</div>
+		</div>
+        <ng-pagination-control pagination-id="usuarios2" ></ng-pagination-control>
+        
+		<div id="idModalModificar" class="modal">
+			<div class="modal-content">
+                <div class="card-header">
+                <h4 class="black-text center">Modificar</h4>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="icon_prefix" placeholder="Nombre" type="text" class="validate" ng-model="usuariomodificar.name">
+                        <label for="icon_prefix">Nombre</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <input id="icon_prefix" placeholder="Email" type="email" class="validate" ng-model="usuariomodificar.email">
+                        <label for="icon_prefix">Email</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">adjust</i>
+                        <select ng-model="usuariomodificar.tipo"> 
+                          <option value="" disabled selected>Seleccione</option>
+                          <option value="Administrador">Administrador</option>
+                          <option value="Empleado">Empleado</option>
+                        </select>
+                        <label>Tipo de usuario</label>
+                    </div>
                 </div>
             </div>
-        	<div class="card">
-        		<div class="row mrg">
-			        <table>
-						<thead>
-							<tr>
-					      		<th scope="col">Usuario</th>
-								<th scope="col">Contraseña</th>
-								<th scope="col">Estatus</th>
-								<th scope="col">Fecha</th>
-								<th scope="col">Editar</th>
-								<th scope="col">Desabilitar</th>
-					    	</tr>
-					  	</thead>
-					  	<tbody>
-				    	    <tr id="[[$index]]" ng-repeat="persona in DatosDePersona | filter:buscarPersona as resultPersona">
-					    	    <td scope="col">Viz98</td>
-					    	    <td scope="col">********</td>
-								<td scope="col">Activo</td>
-								<td scope="col">28/06/2019</td>
-								<td><li class="waves-effect"><a href="#idModal" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
-								<td><div class="switch">    <label>            <input type="checkbox">      <span class="lever"></span>          </label>  </div></td>
-								
-				      		</tr>
-					     </tbody>
-					</table>
-				</div>
+			<div class="modal-footer">
+				<button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
+                <button type="submit" class="btn modal-close" ng-click="modificar()">Guardar</button>
 			</div>
 		</div>
-			<div id="idModal" class="modal">
-				<div class="modal-content">
-					<div class="row">
-					    <form class="col s12">
-					      <div class="row">
-					        <div class="input-field col s6">
-					          <input placeholder="Usuario" id="first_name" type="text" class="validate">
-					          <label for="first_name">Usuario</label>
-					        </div>
-					        <div class="input-field col s6">
-					          <input placeholder="Contraseña" id="first_name" type="text" class="validate">
-					          <label for="first_name">Contraseña</label>
-					        </div>
-					      </div>
-					    </form>
-				  	</div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
-					<button class="btn modal-close blue" data-tarjet="#idModal">Guardar</button>
-				</div>
-			</div>
-		</div>
-		
+    </div>
+</div>
         @section('footer')
             @parent
             <script type="text/javascript">
+                var app=angular.module('app',['ngPagination']).config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('[[');
+                $interpolateProvider.endSymbol(']]');
+                });
+                app.controller('crtl',function($scope, $http, $filter)
+                {
+                    $scope.usuario={};
+                    $scope.contra={};
+                    $scope.usuariomodificar={};
+
+                    $scope.usuarios2= (<?php echo $usuarios;?>);
+                    $scope.empleados2= (<?php echo $empleados;?>);
+
+                    console.log($scope.usuarios2);
+                    console.log($scope.empleados2);
+
+                    $scope.cargarDatos=function(id)
+                    {
+                        console.log("holis: " + id);
+
+                        $scope.usuarioscargar= (<?php echo $usuarios;?>);
+
+                        $scope.i=0;
+                        // Recorrer el arreglo para saber cual id de la tabla se selecciono
+                        for ($scope.i ; $scope.i < $scope.usuarioscargar.length; $scope.i ++) 
+                        {
+                            if($scope.usuarioscargar[$scope.i].id==id)
+                            {
+                                console.log("lo encontro");
+                                //Pasar los datos a los inputs
+                                console.log("cargar: " , $scope.usuarioscargar);
+                                $scope.usuariomodificar.name=$scope.usuarioscargar[$scope.i].name;
+                                $scope.usuariomodificar.email=$scope.usuarioscargar[$scope.i].email;
+                                $scope.usuariomodificar.tipo=$scope.usuarioscargar[$scope.i].tipo;
+                                ;
+                                $scope.id=id;
+                                console.log("id: " + id);
+                                console.log("modificar: " , $scope.usuariomodificar);
+
+                            }
+                        }
+                    }
+
+                    $scope.guardar=function()
+                    {
+                        if($scope.usuario.name!=null | $scope.usuario.email!=null | $scope.usuario.password!=null | $scope.contra.contrasena!=null)
+                        {
+                            console.log("contraseña: ", $scope.contra.contrasena);
+                            console.log("Confirmar contraseña: " , $scope.usuario.password);
+                            if ($scope.contra.contraseña=$scope.usuario.password) 
+                            {
+                                console.log("tipo: " , $scope.usuario.tipo);
+                                $scope.usuario.status=1;
+                                $http.post('/guardar', $scope.usuario).then
+                                (
+                                    function(response)
+                                    {
+                                        console.log($scope.usuario);
+                                        $scope.usuario={};
+                                        swal({
+                                          title: "Guardado Exitosamente",
+                                          text: "Click boton Ok para continuar.",
+                                          icon: "success",                                    
+                                        }).then((value) =>{
+                                            window.location.reload();
+                                        });
+                                    },
+                                    function(errorResponse)
+                                    {
+                                        swal("Error", "", "error");
+                                    }
+                                );
+                            }
+                            else
+                            {
+                                swal({
+                                  title: "La contraseña no es la misma",
+                                  text: "Click boton Ok para continuar.",
+                                  icon: "error",                                    
+                                }).then((value) =>{
+                                });
+                            }
+                        }
+                        else
+                        {
+                            console.log("nombre: " , $scope.usuario.name);
+                            console.log("email: " , $scope.usuario.email);
+                            console.log("password: " , $scope.usuario.password);
+                            console.log("contraseña: " , $scope.contra.contrasena);
+                            swal({
+                              title: "Todos los campos deben rellenarse",
+                              text: "Click boton Ok para continuar.",
+                              icon: "error",                                    
+                            }).then((value) =>{
+                            });
+                        }
+                    }
+
+                    $scope.modificar=function()
+                    {
+                        if($scope.usuariomodificar.name!=null | $scope.usuariomodificar.email!=null | $scope.usuariomodificar.tipo!=null)
+                        {
+                                $scope.usuario.status=1;
+                                $http.post('/modificar/'+$scope.id, $scope.usuariomodificar).then
+                                (
+                                    function(response)
+                                    {
+                                        console.log($scope.usuariomodificar);
+                                        $scope.usuariomodificar={};
+                                        swal({
+                                          title: "Modificado Exitosamente",
+                                          text: "Click boton Ok para continuar.",
+                                          icon: "success",                                    
+                                        }).then((value) =>{
+                                             window.location.reload();
+                                        });
+                                    },
+                                    function(errorResponse)
+                                    {
+                                        swal("Error", "", "error");
+                                    }
+                                );
+                        }
+                        else
+                        {
+                            swal({
+                              title: "Todos los campos deben rellenarse",
+                              text: "Click boton Ok para continuar.",
+                              icon: "error",                                    
+                            }).then((value) =>{
+                            });
+                        }
+                    }
+                });
             	document.addEventListener('DOMContentLoaded', function() 
             	{
 			    	var elems = document.querySelectorAll('.modal');
 			    	var instances = M.Modal.init(elems);
 			  	});
+                $(document).ready(function(){
+                $('select').formSelect();
+              });
             </script>
         @endsection
     @endsection   
