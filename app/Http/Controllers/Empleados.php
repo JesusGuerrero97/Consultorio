@@ -28,17 +28,7 @@ class Empleados extends Controller
     	$empleados = Empleado::all();
     	return view('/empleados', compact('empleados'));
     }
-    public function show2()
-    {
-        $empleados = Empleado::all();
-        return $empleados;
-    }
-    public function edit($id)
-    {
-		$editar = Empleado::find($id);
-		return response()->json(json_encode($editar));
-	}
-
+ 
 	public function update($id, Request $request)
 	{
 		$data = Empleado::find($id);

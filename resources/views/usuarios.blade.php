@@ -106,8 +106,7 @@
 				</table>
 			</div>
 		</div>
-        <ng-pagination-control pagination-id="usuarios2" ></ng-pagination-control>
-        
+        <ng-pagination-control pagination-id="usuarios2" ></ng-pagination-control>    
 		<div id="idModalModificar" class="modal">
 			<div class="modal-content">
                 <div class="card-header">
@@ -157,9 +156,11 @@
 
                     $scope.usuarios2= (<?php echo $usuarios;?>);
                     $scope.empleados2= (<?php echo $empleados;?>);
+                    $scope.usuariosAdministradores2= (<?php echo $usuariosAdministradores;?>);
 
                     console.log($scope.usuarios2);
                     console.log($scope.empleados2);
+                    console.log($scope.usuariosAdministradores2);
 
                     $scope.cargarDatos=function(id)
                     {
@@ -245,7 +246,7 @@
 
                     $scope.modificar=function()
                     {
-                        if($scope.usuariomodificar.name!=null | $scope.usuariomodificar.email!=null | $scope.usuariomodificar.tipo!=null)
+                        if($scope.usuariomodificar.name!=null || $scope.usuariomodificar.email!=null || $scope.usuariomodificar.tipo!=null)
                         {
                                 $scope.usuario.status=1;
                                 $http.post('/modificar/'+$scope.id, $scope.usuariomodificar).then

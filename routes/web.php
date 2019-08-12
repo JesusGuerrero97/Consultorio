@@ -92,5 +92,7 @@ Route::get('/reportes',function(){
 Route::get('/crm',function(){
     return view('crm');
 });
+Route::get('/crm', 'crm@show');
+Route::post('/guardar/{id}', 'detalleTratamientos@store');
 Auth::routes();
 
