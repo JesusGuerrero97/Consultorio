@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Pacientes;
+use App\Paciente as Paciente;
+use DB; 
 
 class Pacientes extends Controller
 {
@@ -35,7 +37,21 @@ class Pacientes extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('pacientes')->insert(
+            ['nombre' => $request->input('nombre'),
+            'apellido' => $request->input('apellido'),
+            'fecha_nac' => $request->input('fechaNac'),
+            'sexo' => $request->input('sexo'), 
+            'direccion' => $request->input('direccion'),
+            'telefono' => $request->input('telefono')]
+            );
+            return 1;
+    }
+    public function solicitar(Request $request)
+    {
+        $paciente = new Paciente();
+        $paciente = $paciente->where('id', '=', $request[0])->first();
+        return $paciente;
     }
 
     /**
@@ -44,9 +60,10 @@ class Pacientes extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $pacientes = DB::table('pacientes')->get();
+        return view('pacientes', compact('pacientes'));  
     }
 
     /**
