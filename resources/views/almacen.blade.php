@@ -3,144 +3,197 @@
 
     @section('header')
         @parent
-        <div class="container">
-        			<h3>Almacén</h3>
-	         	
-	         <div class="row">
-	         		<div class="input-field col s8">
-	         			<i class="material-icons prefix">search</i>
-	         			<input placeholder="Buscar material" id="icon_prefix">
-	         		</div>
-	         		<div class="input-field col s4">
-	         			<a class="waves-effect waves-light btn-small modal-trigger" href="#modalAgregarMaterial"><i class="material-icons right">add</i>Agregar</a>
-	         		</div>
-	         </div>
-	         		
-	      
-	         	 <table>
-			        <thead>
-			          	<tr>
-			            	<th>Id_material</th>
-			              	<th>Descripción</th>
-			              	<th>Stock</th>
-			              	<th>Proveedor</th>
-			              	<th>Editar</th>
-			              	<th>Eliminar</th>
-			          	</tr>
-			        </thead>
-
-			        <tbody>
-			          	<tr>
-			            	<td>20015</td>
-			              	<td>Pasta</td>
-			              	<td>20</td>
-			              	<td>C.Gutierrez</td>
-			              	<td><button class="waves-effect amber accent-3 btn modal-trigger"  href="#modalEditarMaterial"><i class="material-icons">edit</i></button></td>
-			              	<td><button class="waves-effect red darken-4 btn modal-trigger" href="#modalEliminarMaterial"><i class="material-icons">delete</i></button></td>
-			          	</tr>
-			          	<tr>
-			            	<td>30128</td>
-			              	<td>Polvo</td>
-			              	<td>25</td>
-			              	<td>C.Gutierrez</td>
-			              	<td><button class="waves-effect amber accent-3 btn modal-trigger"><i class="material-icons">edit</i></button></td>
-			              	<td><button class="waves-effect red darken-4 btn modal-trigger"><i class="material-icons">delete</i></button></td>
-			          	</tr>
-			          	<tr>
-			            	<td>21111</td>
-			              	<td>Ligas</td>
-			              	<td>6</td>
-			              	<td>H.Lopez</td>
-			              	<td><button class="waves-effect amber accent-3 btn modal-trigger"><i class="material-icons">edit</i></button></td>
-			              	<td><button class="waves-effect red darken-4 btn modal-trigger"><i class="material-icons">delete</i></button></td>
-			          	</tr>
-			        </tbody>
-			    </table>    
-	    </div>
-
-	    <!-- Modal Agregar -->
-	    <div id="modalAgregarMaterial" class="modal">
-		    <div class="modal-content">
-		      <h4 class="brand-logo teal-text">Agregar material</h4>
-		      <div class="row">
-			    <form class="col s12">
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input placeholder="Descripción" type="text">
-			          <label >Descripción</label>
-			        </div>
-			      </div>
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input placeholder="Nombre del proveedor" type="text">
-			          <label >Nombre del proveedor</label>
-			        </div>
-			      </div>
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input placeholder="Stock" type="text">
-			          <label >Stock</label>
-			        </div>
-			      </div>
-			    </form>
-			  </div>
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Guardar</a>
-		      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-		    </div>
-	  	</div>
-
-	  	<!-- Modal Editar -->
-	    <div id="modalEditarMaterial" class="modal">
-		    <div class="modal-content">
-		      <h4 class="brand-logo teal-text">Editar material</h4>
-		      <div class="row">
-			    <form class="col s12">
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input placeholder="Descripción" type="text">
-			          <label >Descripción</label>
-			        </div>
-			      </div>
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input placeholder="Nombre del proveedor" type="text">
-			          <label >Nombre del proveedor</label>
-			        </div>
-			      </div>
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input placeholder="Stock" type="text">
-			          <label >Stock</label>
-			        </div>
-			      </div>
-			    </form>
-			  </div>
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Guardar</a>
-		      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-		    </div>
-	  	</div>
-
-	  	<!-- Modal Eliminar -->
-	    <div id="modalEliminarMaterial" class="modal">
-		    <div class="modal-content">
-		      <p class="brand-logo">¿Está seguro que desea eliminar este registro?</p>
-		      
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sí</a>
-		      <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
-		    </div>
-	  	</div>
+        <style>
+            .crd{
+                height:88vh;
+            }
+            .mrg{
+                padding: 2%;   
+            }
+            .mrg2{
+                padding: 1%;   
+            }
+        </style>
+         <div ng-controller="ctrl">
+            <div class="card">
+                    <div class="row mrg2">
+                        <div class="input-field col m9">
+                            <i class="material-icons prefix">search</i>
+                            <input id="busMedicamento" type="text" class="validate">
+                            <label for="busMedicamento">Material</label> 
+                        </div>
+                        <div class="input-field col m3">
+						
+                            <a href="#modal1" class="waves-effect waves-light btn modal-trigger">Agregar Material</a>
+                        </div>
+                    </div>
+					<!-- Modal Agregar -->
+					<div>
+					<div id="modal1" class="modal">
+						<div class="modal-content">
+						<h4 class="brand-logo teal-text">Material</h4>
+						<div class="row">
+							<form class="col s12">
+							<div class="row">
+								<div class="input-field col s12">
+								<input placeholder="Descripción" type="text" class="validate" ng-model="almacen.descripcion">
+								<label >Descripción</label>
+								</div>
+							</div>
+							<div class="row">
+							<label>Proveedor</label>
+							<select id="proveedor">
+							<option value="0" disabled selected>Proveedor</option>
+									@foreach($proveedores as $proveedor)
+									<option value="{!! $proveedor->id !!}">
+										{!! $proveedor->empresa !!}
+									</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+								<input placeholder="Stock" type="text" class="validate" ng-model="almacen.stock">
+								<label >Stock</label>
+								</div>
+							</div>
+							</form>
+						</div>
+						</div>
+						<div class="modal-footer">
+						
+                		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="editar()" ng-if="almacen.id!=null">Editar</a>
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat" ng-click="enviar()" ng-if="almacen.id==null">Guardar</a>
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+						</div>
+					</div>
+					</div>
+            </div>
+	
+        <div class="card">
+        <div class="row mrg">
+            <table class="striped">
+        <thead>
+          <tr>
+              <th>ID</th>
+              <th>Descripcin</th>
+              <th>Stock</th>
+              <th>Proveedor</th>
+              <th>Editar</th>
+              <th>Deshabilitar</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($almacenes as $almacen)
+	            <tr>
+	                <td>{!! $almacen->id !!}</td>
+	                <td>{!! $almacen->descripcion !!}</td>
+                    <td>{!! $almacen->stock !!}</td>
+	                <td>{!! $almacen->proveedor !!}</td>
+	                <td>
+	                <a class="waves-effect blue accent-3 btn modal-trigger" data-target="modal1" ng-click="mandar({{$almacen->id}})"><i class="material-icons">
+								edit
+								</i></a>
+							</td>
+					<?php if(($almacen->status >0)): ?>
+                    <td><div class="switch"><label><input type="checkbox" id="estatus" ng-click="estatus({{$almacen->id}})" checked="checked" ><span class="lever"></span></label></div></td>
+					<?php else: ?>
+						<td><div class="switch"><label><input type="checkbox" id="estatus" ng-click="estatus({{$almacen->id}})"><span class="lever"></span></label></div></td>
+					<?php endif; ?>
+					@endforeach
+        </tbody>
+        </table>
+        </div>
+        </div>
+    </div>
         @section('footer')
             @parent
             <script>
+				var app=angular.module('app',[]);
+            	app.controller('ctrl',function($scope,$http){
+					$scope.almacen = {};
+						$scope.enviar=function(){
+							console.log($scope.almacen);
+							$scope.almacen.proveedor= $("#proveedor").val();
+							$http.post('/almacenar',$scope.almacen).then(
+							function(response){
+								console.log(response);
+								if(response.data == 0){
+											alert("hubo un error");
+								}
+								if(response.data == 1){
+										alert("agregado con exito");
+										window.location = "almacen";
+									}
+								},
+								function(erroResponse){
+								}	
+							);
+						}
+						$scope.editar=function(){
+							console.log($scope.almacen);
+							$scope.almacen.proveedor= $("#proveedor").val();
+							$http.post('/editar',$scope.almacen).then(
+							function(response){
+								console.log(response);
+								if(response.data == 0){
+											alert("hubo un error");
+								}
+								if(response.data == 1){
+										alert("editado con exito con exito");
+										window.location = "almacen";
+									}
+								},
+								function(erroResponse){
+								}	
+							);
+						}
+						$scope.estatus=function(id){
+							$scope.id = id;
+							console.log("Entra a la funcion");
+							console.log($scope.id);
+							$http.post('/cambiar',$scope.id).then(
+								function(response){
+									console.log(response.data);
+									window.location = "almacen";
+									
+								},
+								function(erroResponse){
+									
+								}
+							);
+						}
+						$(document).ready(function() {
+							$("input").change(function() {
+								if($(this).is(":checked")) {
+									$scope.hola = $('#estatus:checked').val();
+									console.log($scope.hola);
+								}
+								else {
+								console.log("Is Not checked");
+								}
+							})
+						});
+						$scope.mandar=function(id){
+							$scope.id = id;
+							console.log($scope.id);
+							$http.post('/solicitar',$scope.id).then(
+								function(response){
+									console.log(response.data);
+									$scope.almacen = response.data;
+								},
+								function(erroResponse){
+									
+								}
+							);
+						}
+				});
             	$(document).ready(function(){
     				$('.modal').modal();
   				});
+				$(document).ready(function(){
+					$('select').formSelect();
+				});
             </script>
 
             
