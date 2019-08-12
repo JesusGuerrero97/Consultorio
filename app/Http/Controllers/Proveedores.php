@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Proveedor as Proveedor;
+use App\Proveedor;
+use App\Contacto;
 use DB;
 class Proveedores extends Controller
 {
@@ -62,6 +63,12 @@ class Proveedores extends Controller
         return view('tablaProveedor', compact('proveedores'));
     }
 
+    public function showContactos()
+    {
+        $contacto_proveedor = DB::table('contacto_proveedor')->get();
+        return view('tablaProveedor', compact('contacto_proveedor'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,6 +90,24 @@ class Proveedores extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function Habilitar(Request $request)
+    {
+        $data = Proveedor::find($request[0]);
+        $data->status = 1;
+        $data->save();
+        return 1;
+        
+    }
+
+    public function Deshabilitar(Request $request)
+    {
+        $data = Proveedor::find($request[0]);
+        $data->status = 0;
+        $data->save();
+        return 0;
+        
     }
 
     /**

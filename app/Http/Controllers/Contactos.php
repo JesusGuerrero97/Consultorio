@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contacto;
+use DB;
 
 class Contactos extends Controller
 {
@@ -45,9 +46,14 @@ class Contactos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $data=new Contacto();
+        $data->nombre=$request->input('nombre');
+        $data->telefono=$request->input('direccion');
+        $data->correo=$request->input('correo');
+        $data->save();
+        return $request -> all();
     }
 
     /**
