@@ -39,6 +39,7 @@
               <th>Sexo</th>
               <th>Direccion</th>
               <th>Telefono</th>
+              <th>Tratamiento</th>
               <th>Editar</th>
               <th>Deshabilitar</th>
           </tr>
@@ -54,6 +55,7 @@
 	                <td>{!! $paciente->sexo !!}</td>
 					<td>{!! $paciente->direccion !!}</td>
                     <td>{!! $paciente->telefono!!}</td>
+                    <td><a class="waves-effect waves-light btn modal-trigger" data-target="modal1" ng-click="comprobar({{$paciente->id}})">Tratamiento</a></td>
 	                <td>
 	                <a class="waves-effect blue accent-3 btn " href="{{route('editPac', $paciente->id)}}" ><i class="material-icons">
 								edit
@@ -69,6 +71,51 @@
         </table>
         </div>
         </div>
+        <!-- Empieza el modal -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+            <h4 class="brand-logo teal-text">Tratamiento</h4>
+            <div class="row">
+                <form class="col s12">
+                <div class="input-field col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="tipo">
+                            <option value="0" disabled selected>Tipo de tratamiento</option>
+                            <option value="Ortodoncia">Ortodoncia</option>
+                            <option value="Endodoncia">Endodoncia</option>
+                            <option value="Selladores">Selladores</option>
+                            </select>
+                            <label>Tipo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="$" id="Pago" type="text" class="validate" ng-model="tratamiento.pagoini">
+                        <label for="Pago">Pago Inicial</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="$" id="presupuesto" type="text" class="validate"  ng-model="tratamiento.presu">
+                        <label for="presu">Presupuesto Total</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="$" id="citas" type="text" class="validate"  ng-model="tratamiento.citas">
+                        <label for="citas">Citas Subsecuentes</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="#" id="meses" type="text" class="validate"  ng-model="tratamiento.total">
+                        <label for="meses">Total de meses</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" ng-click="guardar({{$paciente->id}})" ng-if="tratamiento.id==null">Guardar</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
     </div>
          
         @section('footer')
@@ -76,6 +123,7 @@
             <script>
                 var app=angular.module('app',[]);
             	app.controller('ctrl',function($scope,$http){
+                    $scope.tratamiento = {};
                     $scope.estatus=function(id){
 							$scope.id = id;
 							console.log("Entra a la funcion");
@@ -91,11 +139,48 @@
 								}
 							);
 						}
+                        $scope.guardar=function(id){
+                            $scope.tratamiento.id_paciente = id;
+                            console.log($scope.tratamiento.id_paciente);
+							console.log($scope.tratamiento);
+							$scope.tratamiento.tipo= $("#tipo").val();
+							$http.post('/guardarTrata',$scope.tratamiento).then(
+							function(response){
+								console.log(response);
+								if(response.data == 0){
+											alert("hubo un error");
+								}
+								if(response.data == 1){
+										alert("agregado con exito");
+										window.location = "pacientes";
+									}
+								},
+								function(erroResponse){
+								}	
+							);
+						}
+                        $scope.comprobar=function(id){
+							$scope.id = id;
+							console.log($scope.id);
+							$http.post('/solicitarTrata',$scope.id).then(
+								function(response){
+									console.log(response.data);
+									$scope.tratamiento = response.data;
+                                    $("#tipo").val($scope.tratamiento.tipo);
+                                    console.log($("#tipo").val());
+								},
+								function(erroResponse){
+									
+								}
+							);
+						}
             
                 }); 
-
                 $(document).ready(function(){
                 $('.modal').modal();
+                });
+                $(document).ready(function(){
+                $('select').formSelect();
                 });
             </script>
         @endsection

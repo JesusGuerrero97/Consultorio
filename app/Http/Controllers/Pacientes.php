@@ -47,6 +47,18 @@ class Pacientes extends Controller
             );
             return 1;
     }
+    public function tratamiento(Request $request)
+    {
+        DB::table('tratamiento')->insert(
+            ['tipo' => $request->tipo,
+            'pagoini' => $request->pagoini,
+            'presu' => $request->presu,
+            'citas' => $request->citas, 
+            'total' => $request->total,
+            'id_paciente' => $request->id_paciente]
+            );
+            return 1;
+    }
     public function solicitar(Request $request)
     {
         $paciente = new Paciente();
@@ -105,7 +117,7 @@ class Pacientes extends Controller
     {
         DB::table('pacientes')
                 ->where('id', $request->id)
-                ->update(['nombre' => $request->nombre, 'apellido' => $request->stock,
+                ->update(['nombre' => $request->nombre, 'apellido' => $request->apellido,
                 'fechaNac' => $request->fechaNac, 'sexo' => $request->sexo, 'direccion' => $request->direccion,
                 'telefono' => $request->telefono]);
 
