@@ -40,7 +40,7 @@ class Pacientes extends Controller
         DB::table('pacientes')->insert(
             ['nombre' => $request->input('nombre'),
             'apellido' => $request->input('apellido'),
-            'fecha_nac' => $request->input('fechaNac'),
+            'fechaNac' => $request->input('fechaNac'),
             'sexo' => $request->input('sexo'), 
             'direccion' => $request->input('direccion'),
             'telefono' => $request->input('telefono')]
@@ -53,6 +53,23 @@ class Pacientes extends Controller
         $paciente = $paciente->where('id', '=', $request[0])->first();
         return $paciente;
     }
+    public function cambiar(Request $request)
+    {
+        $pacientes = new Paciente();
+        $pacientes = $pacientes->where('id', '=', $request[0])->first();
+        
+        if($pacientes->status == 0){
+            DB::table('pacientes')
+                ->where('id', $pacientes->id)
+                ->update(['status' => 1]);
+        }else{
+            DB::table('pacientes')
+                ->where('id', $pacientes->id)
+                ->update(['status' => 0]);
+        } 
+        return 1;
+    }
+
 
     /**
      * Display the specified resource.
@@ -84,9 +101,15 @@ class Pacientes extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('pacientes')
+                ->where('id', $request->id)
+                ->update(['nombre' => $request->nombre, 'apellido' => $request->stock,
+                'fechaNac' => $request->fechaNac, 'sexo' => $request->sexo, 'direccion' => $request->direccion,
+                'telefono' => $request->telefono]);
+
+                return 1;
     }
 
     /**

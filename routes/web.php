@@ -51,6 +51,8 @@ Route::get('/editPac/{id}',function($id)
 })->name('editPac');
 
 Route::post('/mandarPac','pacientes@solicitar');
+Route::post('/editarPac','pacientes@update');
+Route::post('/cambiarPac', 'pacientes@cambiar');
 
 //RUTAS DE ALMACEN
 Route::get('/almacen',function(){

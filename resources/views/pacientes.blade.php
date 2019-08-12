@@ -40,7 +40,7 @@
               <th>Direccion</th>
               <th>Telefono</th>
               <th>Editar</th>
-              <th>Eliminar</th>
+              <th>Deshabilitar</th>
           </tr>
         </thead>
 
@@ -50,7 +50,7 @@
 	                <td>{!! $paciente->id !!}</td>
 	                <td>{!! $paciente->nombre !!}</td>
                     <td>{!! $paciente->apellido !!}</td>
-	                <td>{!! $paciente->fecha_nac !!}</td>
+	                <td>{!! $paciente->fechaNac !!}</td>
 	                <td>{!! $paciente->sexo !!}</td>
 					<td>{!! $paciente->direccion !!}</td>
                     <td>{!! $paciente->telefono!!}</td>
@@ -59,8 +59,12 @@
 								edit
 								</i></a>
 							</td>
-                    <td><div class="switch"><label><input type="checkbox"><span class="lever"></span></label>  </div></td>
-                    @endforeach
+                    <?php if(($paciente->status >0)): ?>
+                        <td><div class="switch"><label><input type="checkbox" id="estatus" ng-click="estatus({{$paciente->id}})" checked="checked" ><span class="lever"></span></label></div></td>
+					<?php else: ?>
+						<td><div class="switch"><label><input type="checkbox" id="estatus" ng-click="estatus({{$paciente->id}})"><span class="lever"></span></label></div></td>
+					<?php endif; ?>
+                     @endforeach
         </tbody>
         </table>
         </div>
@@ -72,7 +76,21 @@
             <script>
                 var app=angular.module('app',[]);
             	app.controller('ctrl',function($scope,$http){
-
+                    $scope.estatus=function(id){
+							$scope.id = id;
+							console.log("Entra a la funcion");
+							console.log($scope.id);
+							$http.post('/cambiarPac',$scope.id).then(
+								function(response){
+									console.log(response.data);
+									window.location = "pacientes";
+									
+								},
+								function(erroResponse){
+									
+								}
+							);
+						}
             
                 }); 
 

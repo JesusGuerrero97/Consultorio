@@ -58,7 +58,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col 12">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="editar()" ng-if="paciente.id!=null">Editar</a>
+                        <a href="#!" class="waves-effect waves-light btn" ng-click="editar()" ng-if="paciente.id!=null">Editar</a>
                         <a class="waves-effect waves-light btn" ng-click="enviar()" ng-if="paciente.id==null">Guardar</a>
                         <a class="waves-effect waves-light btn" href="{{route('pacientes')}}">Cancelar</a>
                     </div>
@@ -169,13 +169,59 @@
                             function(response){
                                 console.log(response.data);
                                 $scope.paciente = response.data;
-                                
+                                console.log($scope.paciente);
+                                reverseFormat($scope.paciente.fechaNac);
                             },
                             function(erroResponse){
                                 
                             }
                         );
                     }
+                    function reverseFormat(date) {
+                    var d = new Date(date),
+                        month = '' + (d.getMonth()+1),
+                        day = '' + (d.getDate()+1),
+                        year = d.getFullYear();
+                    
+                    if (month.length < 2) month = '0' + month;
+                    if (day.length < 2) day = '0' + day;
+                    var fecha = year+"-"+day+"-"+month;
+                    var newdate = fecha.split("-").reverse().join("-");
+                    console.log(newdate);
+                    $scope.paciente.fechaNac = new Date(newdate);
+                }
+                $scope.editar=function(){
+							console.log($scope.paciente);
+                            var dia= date.getDate();
+                            var mes= date.getMonth() + 1;
+                            var year= date.getFullYear();
+                            var fecha_actual= String(year+"-"+mes+"-"+dia);
+                            console.log(fecha_actual);
+                            var dia2 = $scope.paciente.fechaNac.getDate();
+                            var mes2 = $scope.paciente.fechaNac.getMonth() + 1;
+                            var year2 = $scope.paciente.fechaNac.getFullYear();
+                            var fecha_paciente=String(year2+"-"+mes2+"-"+dia2);
+                            $scope.paciente.fechaNac = fecha_paciente;
+                            var actual = new Date(fecha_actual).getTime();
+                            var fechaFin    = new Date($scope.paciente.fechaNac).getTime();
+                            var diff = actual - fechaFin;
+                            var dias = diff/(1000*60*60*24) ;
+                            console.log(dias);
+							$http.post('/editarPac',$scope.paciente).then(
+							function(response){
+								console.log(response);
+								if(response.data == 0){
+											alert("hubo un error");
+								}
+								if(response.data == 1){
+										alert("editado con exito con exito");
+										window.location.href = 'http://127.0.0.1:8000/pacientes';
+									}
+								},
+								function(erroResponse){
+								}	
+							);
+						}
             });
             $(document).ready(function(){
                 $('.modal').modal();
