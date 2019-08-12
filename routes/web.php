@@ -37,17 +37,36 @@ Route::post('/deleteDosis','dosis@destroy');
 
 
 //RUTAS DE PACIENTES
-Route::get('/pacientes',function(){
-    return view('pacientes');
-});
+Route::get('/pacientes', 'pacientes@show')
+->name('pacientes');
 
 Route::get('/agregarPac','pacientes@index')	
 ->name('agregar');
+
+Route::post('/guardar','pacientes@store');
+
+Route::get('/editPac/{id}',function($id)
+{
+  return view('agregarPac',compact('id'));
+})->name('editPac');
+
+Route::post('/mandarPac','pacientes@solicitar');
+Route::post('/editarPac','pacientes@update');
+Route::post('/cambiarPac', 'pacientes@cambiar');
+Route::post('/guardarTrata','pacientes@tratamiento');
+Route::post('/solicitarTrata','tratamientos@solicitar');
 
 //RUTAS DE ALMACEN
 Route::get('/almacen',function(){
     return view('almacen');
 });
+Route::get('/almacen', 'almacenes@index')
+->name('almacen');
+
+Route::post('/almacenar','almacenes@store');
+Route::post('/editar','almacenes@update');
+Route::post('/solicitar','almacenes@solicitar')->name('solicitar');
+Route::post('/cambiar', 'almacenes@cambiar');
 
 //RUTAS EMPLEADOS
 Route::get('/RH_Empleados',function(){
