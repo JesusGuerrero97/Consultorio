@@ -122,5 +122,7 @@ Route::get('/crm',function(){
 });
 Route::get('/crm', 'crm@show');
 Route::post('/guardar/{id}', 'detalleTratamientos@store');
+
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
