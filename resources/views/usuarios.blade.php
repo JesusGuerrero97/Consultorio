@@ -13,14 +13,36 @@
             .mrg2{
                 padding: 1%;   
             }
+            .tabs .tab a
+            {
+              color:#00ACC1;
+            }
+            .tabs .tab a:hover,.tabs .tab a.active 
+            {
+              background-color:transparent !important;
+              color:#008B9B;
+            }
+            .tabs .tab.disabled a,.tabs .tab.disabled a:hover 
+            {
+              color:rgba(102,147,153,0.7);  
+            }
+            .tabs .indicator 
+            {
+              background-color:#009BAD;
+            }
         </style>
 <div class="">
     <div ng-controller="crtl">
         <div class="card">
             <div class="row mrg2">
-                <div class="input-field col m9">
+                <div class="input-field col m9" ng-show="habilitados">
                     <i class="material-icons prefix">search</i>
-                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="usuarios2">
+                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="usuariosActivos2">
+                    <label for="busMedicamento">Usuarios</label> 
+                </div>
+                <div class="input-field col m9" ng-show="deshabilitados">
+                    <i class="material-icons prefix">search</i>
+                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="usuariosDesactivos2">
                     <label for="busMedicamento">Usuarios</label> 
                 </div>
                 <div class="input-field col m3">
@@ -83,7 +105,11 @@
             </div>
         </div>
     	<div class="card">
-    		<div class="row mrg">
+            <ul class="tabs">
+                    <li class="tab col s3"><a href="#test1" class="active" ng-click="habilitar()">Habilitados</a></li>
+                    <li class="tab col s3"><a href="#test2" ng-click="desabilitar()">Inhabilitados</a></li>
+                </ul>
+    		<div class="row mrg" ng-show="habilitados">
 		        <table>
 					<thead>
 						<tr>
@@ -95,18 +121,45 @@
 				    	</tr>
 				  	</thead>
 				  	<tbody>
-			    	    <tr ng-pagination="usuario in usuarios2 " ng-pagination-size="5" ng-click="cargarDatos([[usuario.id]])">
+			    	    <tr ng-pagination="usuario in usuarioson " ng-pagination-size="5" ng-click="cargarDatos([[usuario.id]])">
 				    	   <td scope="col">[[usuario.name]]</td>
                             <td scope="col">[[usuario.email]]</td>
                             <td scope="col">[[usuario.tipo]]</td>
 							<td><li class="waves-effect"><a href="#idModalModificar" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
-							<td><div class="switch">    <label>            <input type="checkbox">      <span class="lever"></span>          </label>  </div></td>
+							<td><div class="switch"><label><input type="checkbox" ng-click="desactivar()"><span class="lever"></span></label> </div></td>
 			      		</tr>
 				     </tbody>
 				</table>
 			</div>
-		</div>
-        <ng-pagination-control pagination-id="usuarios2" ></ng-pagination-control>    
+            <div class="row mrg" ng-show="deshabilitados">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Desabilitar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-pagination="usuario in usuariosDesactivos2 " ng-pagination-size="5" ng-click="cargarDatos([[usuario.id]])">
+                           <td scope="col">[[usuario.name]]</td>
+                            <td scope="col">[[usuario.email]]</td>
+                            <td scope="col">[[usuario.tipo]]</td>
+                            <td><li class="waves-effect"><a href="#idModalModificar" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
+                           <td><div class="switch"><label><input type="checkbox" ng-click="desactivar()"><span class="lever"></span></label> </div></td>
+                        </tr>
+                     </tbody>
+                </table>
+            </div>
+		</div>+
+        <div ng-show="habilitados">
+            <ng-pagination-control pagination-id="usuariosActivos2" ></ng-pagination-control>
+        </div>
+        <div ng-show="deshabilitados">
+            <ng-pagination-control pagination-id="usuariosDesactivos2" ></ng-pagination-control>
+        </div>        
 		<div id="idModalModificar" class="modal">
 			<div class="modal-content">
                 <div class="card-header">
@@ -153,14 +206,40 @@
                     $scope.usuario={};
                     $scope.contra={};
                     $scope.usuariomodificar={};
+                    $scope.usuarioson=[];
 
                     $scope.usuarios2= (<?php echo $usuarios;?>);
                     $scope.empleados2= (<?php echo $empleados;?>);
-                    $scope.usuariosAdministradores2= (<?php echo $usuariosAdministradores;?>);
+                    $scope.usuariosActivos2= (<?php echo $usuariosActivos;?>);
+                    $scope.usuariosDesactivos2= (<?php echo $usuariosDesactivos;?>);
+
+                    $scope.i;
+                    for ($scope.i ; $scope.i < $scope.usuariosActivos2.length; $scope.i ++) 
+                    {
+                            //Pasar los datos a los inputs
+                            $scope.usuarioson.push($scope.usuariosActivos2[$scope.i]);
+                    }
 
                     console.log($scope.usuarios2);
                     console.log($scope.empleados2);
-                    console.log($scope.usuariosAdministradores2);
+                    console.log($scope.usuarioson);
+                    console.log($scope.usuariosDesactivos2);
+
+
+                    $scope.habilitados=true;
+                    $scope.deshabilitados=false;
+
+                    $scope.habilitar=function()
+                    {
+                        $scope.habilitados=true;
+                        $scope.deshabilitados=false;
+                    }
+
+                    $scope.desabilitar=function()
+                    {
+                        $scope.habilitados=false;
+                        $scope.deshabilitados=true;
+                    }
 
                     $scope.cargarDatos=function(id)
                     {
@@ -279,6 +358,31 @@
                             });
                         }
                     }
+
+                    $scope.desactivar=function()
+                    {
+                        console.log("desactivar");
+                        $scope.usuario.status=0;
+                        $http.post('/desactivar2/'+$scope.id, $scope.usuario).then
+                        (
+                            function(response)
+                            {
+                                console.log("Se desactivo");
+                                swal({
+                                      title: "Desactivado Exitosamente",
+                                      text: "Click boton Ok para continuar.",
+                                      icon: "success",                                    
+                                    }).then((value) =>{
+                                        window.location.reload();
+                                    });
+                            },
+                            function(errorResponse)
+                            {
+                                swal("Ocurrio un error", "error");
+                            }
+                        );
+                    }
+
                 });
             	document.addEventListener('DOMContentLoaded', function() 
             	{
@@ -287,6 +391,9 @@
 			  	});
                 $(document).ready(function(){
                 $('select').formSelect();
+              });
+                $(document).ready(function(){
+                $('.tabs').tabs();
               });
             </script>
         @endsection
