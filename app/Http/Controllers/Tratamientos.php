@@ -48,9 +48,20 @@ class Tratamientos extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
-        //
+        DB::table('tratamiento')
+                ->where('id', '=', $id)
+                ->update(['total' => $request->input('total')]);
+        return $request;
+    }
+
+    public function store2($id, Request $request)
+    {
+        DB::table('tratamiento')
+                ->where('id', '=', $id)
+                ->update(['total' => $request->input('total')]);
+        return $request;
     }
 
     /**
@@ -59,10 +70,6 @@ class Tratamientos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -82,10 +89,6 @@ class Tratamientos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

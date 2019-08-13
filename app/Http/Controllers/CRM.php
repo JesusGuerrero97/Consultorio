@@ -12,31 +12,24 @@ class CRM extends Controller
     public function show()
     {
     	$tratamiento = DB::table('tratamiento')
-            ->join('pacientes', 'pacientes.id', '=', 'tratamiento.id_paciente')
-            ->select('tratamiento.id','nombre', 'apellidos','telefono', 'Observaciones')
-            ->get();
-
-        $asistira = DB::table('tratamiento')
         ->join('pacientes', 'pacientes.id', '=', 'tratamiento.id_paciente')
-        ->join('detalle_tratamientos', 'detalle_tratamientos.id_tratamiento', 'tratamiento.id')
-        ->select('tratamiento.id','nombre', 'apellidos','telefono', 'Observaciones', 'Estado')
-        ->where('detalle_tratamientos.Estado', '=', 'Asistira')
+        ->select('tratamiento.id','nombre','telefono', 'tipo', 'citas', 'total')
+        ->where('tratamiento.total', '>=', 1)
         ->get();
 
-        $noAsistira = DB::table('tratamiento')
+        $tratamiento2 = DB::table('tratamiento')
         ->join('pacientes', 'pacientes.id', '=', 'tratamiento.id_paciente')
         ->join('detalle_tratamientos', 'detalle_tratamientos.id_tratamiento', 'tratamiento.id')
-        ->select('tratamiento.id','nombre', 'apellidos','telefono', 'Observaciones', 'Estado')
-        ->where('detalle_tratamientos.Estado', '=', 'No asistira')
+        ->select('tratamiento.id','nombre','telefono', 'tipo', 'Estado', 'detalle_tratamientos.created_at', 'detalle_tratamientos.id', 'total')
         ->get();
 
         $pendiente = DB::table('tratamiento')
         ->join('pacientes', 'pacientes.id', '=', 'tratamiento.id_paciente')
         ->join('detalle_tratamientos', 'detalle_tratamientos.id_tratamiento', 'tratamiento.id')
-        ->select('tratamiento.id','nombre', 'apellidos','telefono', 'Observaciones', 'Estado')
+        ->select('tratamiento.id','nombre','telefono', 'tipo', 'Estado', 'detalle_tratamientos.created_at', 'detalle_tratamientos.id', 'total')
         ->where('detalle_tratamientos.Estado', '=', 'Pendiente')
         ->get();
 
-        return view('crm', compact('tratamiento', 'asistira', 'noAsistira', 'pendiente'));
+        return view('crm', compact('tratamiento', 'tratamiento2', 'pendiente'));
     }
 }

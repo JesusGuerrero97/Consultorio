@@ -74,7 +74,7 @@ Route::get('/RH_Empleados',function(){
 })->name('Empleados');
 Route::post('/save', 'empleados@store');
 Route::get('/RH_Empleados', 'empleados@show');
-Route::post('/modificar/{id}', 'empleados@update');
+Route::post('/modificarEmpleados/{id}', 'empleados@update');
 Route::post('/desactivar/{id}', 'empleados@desactivar');
 Route::post('/activar/{id}', 'empleados@activar');
 //Route::get('/traer', 'empleados@show2');
@@ -85,9 +85,9 @@ Route::get('/usuarios',function(){
 });
 Route::post('/guardar', 'usuarios@store');
 Route::get('/usuarios', 'usuarios@show');
-Route::post('/modificar/{id}', 'usuarios@update');
+Route::post('/modificarUsuario/{id}', 'usuarios@update');
 Route::post('/desactivar2/{id}', 'usuarios@desactivar');
-
+Route::post('/activar2/{id}', 'usuarios@activar');
 
 //RUTAS DE PROVEEDORES
 Route::get('/contacto',function(){
@@ -122,5 +122,8 @@ Route::get('/crm',function(){
 });
 Route::get('/crm', 'crm@show');
 Route::post('/guardar/{id}', 'detalleTratamientos@store');
+Route::post('/restar/{id}', 'tratamientos@store');
+Route::put('/modificar3/{id}', 'detalleTratamientos@update');
+Route::put('/restar2/{i}', 'tratamientos@store2');
 Auth::routes();
 

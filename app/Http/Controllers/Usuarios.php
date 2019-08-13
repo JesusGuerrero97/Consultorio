@@ -35,12 +35,19 @@ class Usuarios extends Controller
     {
     	$usuarios = User::all();
     	$empleados = Empleado::all();
-        $usuariosActivos = User::all()->where('status', '=', '1');
-        $usuariosDesactivos = User::all()->where('status', '=', '0');
-    	return view('usuarios', compact('usuarios', 'empleados', 'usuariosActivos', 'usuariosDesactivos'));	
+    	return view('usuarios', compact('usuarios', 'empleados'));	
     }
 
     public function desactivar($id, Request $request)
+    {
+        $data = User::find($id);
+        $data->status=$request->input('status');
+
+        $data->save();
+        return $request->all();
+    }
+
+    public function activar($id, Request $request)
     {
         $data = User::find($id);
         $data->status=$request->input('status');
