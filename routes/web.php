@@ -61,6 +61,8 @@ Route::post('/editarPac','pacientes@update');
 Route::post('/cambiarPac', 'pacientes@cambiar');
 Route::post('/guardarTrata','pacientes@tratamiento');
 Route::post('/solicitarTrata','tratamientos@solicitar');
+Route::post('/historial', 'consulta@index')->name('historial');
+
 
 //RUTAS DE ALMACEN
 Route::get('/almacen',function(){
@@ -124,5 +126,18 @@ Route::get('/crm', 'crm@show');
 Route::post('/guardar/{id}', 'detalleTratamientos@store');
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+//RUTAS CALENDARIO DE CITAS
+Route::get('/citas',function(){
+    return view('schedule');
+})->name('citas');
+
+Route::post('/saveCita', 'Schedule@store');
+Route::get('/citasGet', 'Schedule@show');
+Route::get('/getPac', 'Schedule@getPacientes');
+
+
+
 Auth::routes();
+
 

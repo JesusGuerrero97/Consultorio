@@ -2,35 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Cita;
+use App\Paciente;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Tratamientos;
-use App\Tratamiento as Tratamiento;
+use App\Http\Controllers\Controller;
 
-use DB;
-
-class Tratamientos extends Controller
+class Schedule extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
-    }
-    public function solicitar(Request $request)
-    {
-        $tratamiento = new Tratamiento();
-        $tratamiento = $tratamiento->where('id_paciente', '=', $request[0])->first();
-
-        if($tratamiento == null){
-            return 0;
-        }
-        else{
-            return $tratamiento;
-        }
-        
+        //
     }
 
     /**
@@ -51,7 +37,16 @@ class Tratamientos extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = new Cita();
+        $data->fecha_inicio = $request->input('fecha_inicio');
+        $data->fecha_fin = $request->input('fecha_fin');
+        $data->tipo = $request->input('tipo');
+        $data->descripcion = $request->input('descripcion');
+        $data->status = $request->input('status');
+
+        $data->save();
+        return $request->all();
     }
 
     /**
@@ -60,9 +55,26 @@ class Tratamientos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $citas = Cita::all();
+//        $citas = DB::table('citas')->get();
+//        return view('citas', compact('citas'));
+        return json_encode($citas);
+    }
+
+    public function getPacientes() {
+        $pacientes = Paciente::all();
+        $newData = [];
+
+        foreach ($pacientes as $pas) {
+            $tempData = new \stdClass();
+            $tempData -> id =  $pas -> id_paciente;
+            $tempData -> name = $pas -> nombre;
+            array_push($newData, $tempData);
+        }
+
+        return json_encode($newData);
     }
 
     /**

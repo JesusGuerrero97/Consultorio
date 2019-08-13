@@ -1,0 +1,32 @@
+.port{
+    color: #1d643b;
+}
+
+.available{
+    background-color: green;
+    border-color: darkgreen;
+    color: #ffffff;
+}
+
+.NoAvailable{
+    background-color: red;
+    border-color: darkred;
+    color: #ffffff;
+}
+
+
+.completed{
+    background-color: orange;
+    border-color: darkorange;
+    color: #ffffff;
+}
+.status2{
+    background-color: #3f51b5;
+    border-color: blueviolet;
+    color: #ffffff;
+}
+.status3{
+    background-color: cornflowerblue;
+    border-color: darkblue;
+    color: #ffffff;
+}

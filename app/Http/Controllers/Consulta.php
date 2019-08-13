@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Tratamientos;
-use App\Tratamiento as Tratamiento;
-
+use App\Http\Controllers\Controller;
+use App\Consultas as Consultas;
 use DB;
 
-class Tratamientos extends Controller
+class Consulta extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,20 +16,10 @@ class Tratamientos extends Controller
      */
     public function index(Request $request)
     {
+        $consultas = new Consultas();
+        $consultas = $consultas->where('id_tratamiento', '=', $request[0])->first();
 
-    }
-    public function solicitar(Request $request)
-    {
-        $tratamiento = new Tratamiento();
-        $tratamiento = $tratamiento->where('id_paciente', '=', $request[0])->first();
-
-        if($tratamiento == null){
-            return 0;
-        }
-        else{
-            return $tratamiento;
-        }
-        
+        return view('historial')->with('consultas',$consultas); 
     }
 
     /**

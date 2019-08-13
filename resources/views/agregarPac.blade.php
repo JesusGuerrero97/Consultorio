@@ -51,11 +51,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Historial Medico</a>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="input-field col 12">
                         <a href="#!" class="waves-effect waves-light btn" ng-click="editar()" ng-if="paciente.id!=null">Editar</a>
                         <a class="waves-effect waves-light btn" ng-click="enviar()" ng-if="paciente.id==null">Guardar</a>
