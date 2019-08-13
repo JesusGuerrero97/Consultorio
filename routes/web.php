@@ -43,17 +43,36 @@ Route::get("/reportespacientes", 'reportes@reportespacientes')->name('reportespa
 
 
 //RUTAS DE PACIENTES
-Route::get('/pacientes',function(){
-    return view('pacientes');
-});
+Route::get('/pacientes', 'pacientes@show')
+->name('pacientes');
 
 Route::get('/agregarPac','pacientes@index')	
 ->name('agregar');
+
+Route::post('/guardarPac','pacientes@store');
+
+Route::get('/editPac/{id}',function($id)
+{
+  return view('agregarPac',compact('id'));
+})->name('editPac');
+
+Route::post('/mandarPac','pacientes@solicitar');
+Route::post('/editarPac','pacientes@update');
+Route::post('/cambiarPac', 'pacientes@cambiar');
+Route::post('/guardarTrata','pacientes@tratamiento');
+Route::post('/solicitarTrata','tratamientos@solicitar');
 
 //RUTAS DE ALMACEN
 Route::get('/almacen',function(){
     return view('almacen');
 });
+Route::get('/almacen', 'almacenes@index')
+->name('almacen');
+
+Route::post('/almacenar','almacenes@store');
+Route::post('/editar','almacenes@update');
+Route::post('/solicitar','almacenes@solicitar')->name('solicitar');
+Route::post('/cambiar', 'almacenes@cambiar');
 
 //RUTAS EMPLEADOS
 Route::get('/RH_Empleados',function(){
@@ -72,6 +91,9 @@ Route::get('/usuarios',function(){
 });
 Route::post('/guardar', 'usuarios@store');
 Route::get('/usuarios', 'usuarios@show');
+Route::post('/modificar/{id}', 'usuarios@update');
+Route::post('/desactivar2/{id}', 'usuarios@desactivar');
+
 
 //RUTAS DE PROVEEDORES
 Route::get('/contacto',function(){
@@ -84,12 +106,21 @@ Route::get('/tablaProveedor',function(){
 
 Route::get('/tablaProveedor','Proveedores@show');
 
+//Route::get('/tablaProveedor','Contactos@show');
+
 Route::post('/GuardarPro', 'Proveedores@store');
 
+Route::post('/HabilitarPro','Proveedores@Habilitar');
+
+Route::post('/DeshabilitarPro','Proveedores@Deshabilitar');
+
+Route::post('/editProveedor','Proveedores@update');
 
 //RUTAS DE CRM
 Route::get('/crm',function(){
     return view('crm');
 });
+Route::get('/crm', 'crm@show');
+Route::post('/guardar/{id}', 'detalleTratamientos@store');
 Auth::routes();
 

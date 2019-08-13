@@ -18,15 +18,23 @@
             	background-color: white !important;
             	width: 15%;
             }
-            .tabs
+            .tabs .tab a
             {
-            	height: 50%;
-            }
-            .modal 
-            { 
-            	width: 30% !important ; 
-            	height: 50% !important ;
-            } 
+              color:#00ACC1;
+          	}
+          	.tabs .tab a:hover,.tabs .tab a.active 
+          	{
+              background-color:transparent !important;
+              color:#008B9B;
+          	}
+          	.tabs .tab.disabled a,.tabs .tab.disabled a:hover 
+          	{
+              color:rgba(102,147,153,0.7);	
+          	}
+          	.tabs .indicator 
+          	{
+              background-color:#009BAD;
+          	}
         </style>
 		<div class="">
 		<div ng-controller="crtl">
@@ -160,6 +168,9 @@
 			<div ng-if="deshabilitar">
 				<ng-pagination-control pagination-id="empleadosoff" ></ng-pagination-control>
 			</div>
+			<div id="idModalModificar" class="modal" tabindex="-1" role="content">
+				<div class="modal-content modal-sm center-align" role="document">
+					<h3 class="">Modificar</h3>
 			<div id="idModalModificar" class="modal">
 				<div class="modal-content">
 					<div class="row">

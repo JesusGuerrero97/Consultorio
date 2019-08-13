@@ -9,6 +9,7 @@ use App\Medicamento;
 use App\Empleado;
 use App\Paciente;
 
+
 class Reportes extends Controller
 {
     /**
@@ -46,5 +47,4 @@ class Reportes extends Controller
         return $pdf->stream();
     }
 
-    
 }

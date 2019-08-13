@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Contacto;
+use App\Http\Controllers\Tratamientos;
+use App\Tratamiento as Tratamiento;
 use DB;
 
-class Contactos extends Controller
+class Tratamientos extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +17,19 @@ class Contactos extends Controller
     public function index()
     {
         //
+    }
+    public function solicitar(Request $request)
+    {
+        $tratamiento = new Tratamiento();
+        $tratamiento = $tratamiento->where('id_paciente', '=', $request[0])->first();
+
+        if($tratamiento == null){
+            return 0;
+        }
+        else{
+            return $tratamiento;
+        }
+        
     }
 
     /**
@@ -46,14 +59,9 @@ class Contactos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $data=new Contacto();
-        $data->nombre=$request->input('nombre');
-        $data->telefono=$request->input('direccion');
-        $data->correo=$request->input('correo');
-        $data->save();
-        return $request -> all();
+        //
     }
 
     /**
