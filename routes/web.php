@@ -106,7 +106,7 @@ Route::post('/HabilitarPro','Proveedores@Habilitar');
 
 Route::post('/DeshabilitarPro','Proveedores@Deshabilitar');
 
-
+Route::post('/editProveedor','Proveedores@update');
 //TABLA DE REPORTES
 Route::get('/reportes',function(){
     return view('reportes');

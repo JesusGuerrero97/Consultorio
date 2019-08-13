@@ -86,17 +86,17 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">business</i>
-                                            <input id="nomEmpresa" type="text" class="validate" ng-model="proveedores.empresa" ng-pattern="/^[a-zA-Z\s ñáéíóú]*$/">
+                                            <input id="nomEmpresa" type="text" class="validate" ng-model="nuevoProveedor.empresa" ng-pattern="/^[a-zA-Z\s ñáéíóú]*$/">
                                             <label for="nomEmpresa">Nombre de la empresa</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">place</i>
-                                            <input id="dirEmpresa" type="text" class="validate" ng-model="proveedores.direccion">
+                                            <input id="dirEmpresa" type="text" class="validate" ng-model="nuevoProveedor.direccion">
                                             <label for="dirEmpresa">Dirección de la empresa</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">phone_in_talk</i>
-                                            <input id="telefono" type="number" class="validate" ng-model="proveedores.telefono">
+                                            <input id="telefono" type="number" class="validate" ng-model="nuevoProveedor.telefono">
                                             <label for="telefono">Teléfono</label>
                                         </div>
                                     </div>
@@ -136,7 +136,7 @@
                                             <td><?= $proveedor->empresa ?></td>
                                             <td><?= $proveedor->direccion ?></td>
                                             <td><?= $proveedor->telefono ?></td>
-                                            <td><li class="waves-effect"><a href="#editProveedor" ng-click="selectEditar(proveedor.id)" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
+                                            <td><li class="waves-effect"><a href="#editProveedor" ng-click="selectEditar(<?= $proveedor->id ?>)" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
                                             <td><div class="switch" ng-click="changeStatusOF(proveedor.id)"><label><input type="checkbox"><span class="lever"></span></label></div></td>
                                        </tr>
                                     @endforeach()
@@ -174,24 +174,24 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">business</i>
-                                            <input id="nomEmpresa" type="text" class="validate" ng-model="proveedores.empresa">
+                                            <input id="nomEmpresa" type="text" class="validate" ng-model="proveedor.empresa">
                                             <label for="nomEmpresa">Nombre de la empresa</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">place</i>
-                                            <input id="dirEmpresa" type="text" class="validate" ng-model="proveedores.direccion">
+                                            <input id="dirEmpresa" type="text" class="validate" ng-model="proveedor.direccion">
                                             <label for="dirEmpresa">Dirección de la empresa</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">phone_in_talk</i>
-                                            <input id="telefono" type="number" class="validate" ng-model="proveedores.telefono">
+                                            <input id="telefono" type="number" class="validate" ng-model="proveedor.telefono">
                                             <label for="telefono">Teléfono</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
-                                    <button type="submit" class="btn modal-close" ng-click="editar()">Editar</button>
+                                    <button type="submit" class="btn modal-close" ng-click="EditarPro()">Editar</button>
                                 </div>
                             </div>
                         </form>
@@ -326,10 +326,12 @@
     	var app=angular.module('app',['ngPagination']).config(function ($interpolateProvider) {});
     	app.controller('ctrl', function($scope, $http){
             
+            var id = 0;
             $scope.proveedores = {};
+            $scope.proveedor = {};
             $scope.proveedoreson=[];
             $scope.proveedoresoff=[];
-            $scope.proveedor = {};
+            $scope.nuevoProveedor = {};
 
             $scope.habilitar=true;
             $scope.deshabilitar=false;
@@ -355,7 +357,7 @@
             
             $scope.GuardarPro=function(){
             
-            $http.post('/GuardarPro',$scope.proveedores).then(
+            $http.post('/GuardarPro',$scope.nuevoProveedor).then(
                 function(response){
                     alert('GUARDADO');
                 },
@@ -371,13 +373,13 @@
                         $scope.editId=id;
                         console.log('id: ', $scope.editId);
 
-                        for(var i = 0; i<=$scope.proveedores.length;i++)
+                        for(var i = 0; i<$scope.proveedores.length;i++)
                         {
                             if($scope.proveedores[i].id==$scope.editId)
                             {
                                 $scope.editId==0;
-                                $scope.proveedores = $scope.proveedores[i];
-                                console.log($scope.proveedores);
+                                $scope.proveedor = $scope.proveedores[i];
+                                console.log($scope.proveedor);
                                 $(function(){
                                     M.updateTextFields();
                                 });
@@ -389,7 +391,7 @@
                     {
                         $http.post('/editProveedor', $scope.proveedor).then
                         (
-                            function(response)
+                            /*function(response)
                             {   
                                 
                                 swal({
@@ -404,6 +406,11 @@
                             function(errorResponse)
                             {
                                 swal ( "Ocurrio un error" ,  "Faltan algunos datos" ,  "error" );
+                            }*/
+                            function(response) {
+                                if(response.data == 1) {
+                                    location.reload();
+                                }
                             }
                         );
                     }
