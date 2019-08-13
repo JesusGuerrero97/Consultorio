@@ -35,6 +35,12 @@ Route::post('/saveDosis','dosis@store');
 Route::post('/editDosis','dosis@update');
 Route::post('/deleteDosis','dosis@destroy');
 
+//Rutas reporte
+Route::get('/reportes','reportes@index')->name('reportes');
+Route::get("/reportesmedicamentos", 'reportes@reportesmedicamentos')->name('reportesmedicamentos');
+Route::get("/reportesempleados", 'reportes@reportesempleados')->name('reportesempleados');
+Route::get("/reportespacientes", 'reportes@reportespacientes')->name('reportespacientes');
+
 
 //RUTAS DE PACIENTES
 Route::get('/pacientes', 'pacientes@show')
@@ -55,6 +61,8 @@ Route::post('/editarPac','pacientes@update');
 Route::post('/cambiarPac', 'pacientes@cambiar');
 Route::post('/guardarTrata','pacientes@tratamiento');
 Route::post('/solicitarTrata','tratamientos@solicitar');
+Route::post('/historial', 'consulta@index')->name('historial');
+
 
 //RUTAS DE ALMACEN
 Route::get('/almacen',function(){
@@ -108,13 +116,7 @@ Route::post('/HabilitarPro','Proveedores@Habilitar');
 
 Route::post('/DeshabilitarPro','Proveedores@Deshabilitar');
 
-
-//TABLA DE REPORTES
-Route::get('/reportes',function(){
-    return view('reportes');
-});
-
-//Route::get('/reportes','Reportes@showProveedores');
+Route::post('/editProveedor','Proveedores@update');
 
 //RUTAS DE CRM
 Route::get('/crm',function(){
@@ -122,8 +124,6 @@ Route::get('/crm',function(){
 });
 Route::get('/crm', 'crm@show');
 Route::post('/guardar/{id}', 'detalleTratamientos@store');
-Route::post('/restar/{id}', 'tratamientos@store');
-Route::put('/modificar3/{id}', 'detalleTratamientos@update');
-Route::put('/restar2/{i}', 'tratamientos@store2');
 Auth::routes();
+
 

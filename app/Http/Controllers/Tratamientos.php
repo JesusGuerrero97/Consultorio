@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Tratamientos;
 use App\Tratamiento as Tratamiento;
+
 use DB;
 
 class Tratamientos extends Controller
@@ -14,9 +15,9 @@ class Tratamientos extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
     }
     public function solicitar(Request $request)
     {

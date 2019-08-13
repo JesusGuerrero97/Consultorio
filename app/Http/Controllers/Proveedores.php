@@ -37,8 +37,8 @@ class Proveedores extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Proveedor();
-        /*$data->empresa=$request->input('empresa');
+        /*$data=new Proveedor();
+        $data->empresa=$request->input('empresa');
         $data->direccion=$request->input('direccion');
         $data->telefono=$request->input('telefono');
         $data->save();
@@ -87,9 +87,16 @@ class Proveedores extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = new Proveedor();
+        if(Proveedor::where('id', '=', $request->input('id'))->update([
+            'empresa'   => $request->input('empresa'),
+            'direccion' => $request->input('direccion'),
+            'telefono'  => $request->input('telefono')
+        ])) {
+            return 1;
+        }
     }
 
     public function Habilitar(Request $request)

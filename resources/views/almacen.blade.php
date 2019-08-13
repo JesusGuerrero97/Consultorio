@@ -75,7 +75,7 @@
             <table class="striped">
         <thead>
           <tr>
-              <th>ID</th>
+              
               <th>Descripcin</th>
               <th>Stock</th>
               <th>Proveedor</th>
@@ -86,12 +86,12 @@
         <tbody>
             @foreach($almacenes as $almacen)
 	            <tr>
-	                <td>{!! $almacen->id !!}</td>
 	                <td>{!! $almacen->descripcion !!}</td>
                     <td>{!! $almacen->stock !!}</td>
 	                <td>{!! $almacen->proveedor !!}</td>
 	                <td>
-	                <a class="waves-effect blue accent-3 btn modal-trigger" data-target="modal1" ng-click="mandar({{$almacen->id}})"><i class="material-icons">
+					<!---<td><li class="waves-effect"><a ng-click="mandar({{$almacen->id}})"  data-target="modal1"><i class="small material-icons">edit</i></a></li></td>-->
+	                <a class="waves-effect  blue lighten-1 btn modal-trigger" data-target="modal1" ng-click="mandar({{$almacen->id}})"><i class="material-icons">
 								edit
 								</i></a>
 							</td>
