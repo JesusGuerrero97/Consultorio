@@ -43,7 +43,7 @@ Route::get('/pacientes', 'pacientes@show')
 Route::get('/agregarPac','pacientes@index')	
 ->name('agregar');
 
-Route::post('/guardar','pacientes@store');
+Route::post('/guardarPac','pacientes@store');
 
 Route::get('/editPac/{id}',function($id)
 {
