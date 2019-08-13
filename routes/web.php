@@ -43,7 +43,7 @@ Route::get('/pacientes', 'pacientes@show')
 Route::get('/agregarPac','pacientes@index')	
 ->name('agregar');
 
-Route::post('/guardar','pacientes@store');
+Route::post('/guardarPac','pacientes@store');
 
 Route::get('/editPac/{id}',function($id)
 {
@@ -86,6 +86,8 @@ Route::get('/usuarios',function(){
 Route::post('/guardar', 'usuarios@store');
 Route::get('/usuarios', 'usuarios@show');
 Route::post('/modificar/{id}', 'usuarios@update');
+Route::post('/desactivar2/{id}', 'usuarios@desactivar');
+
 
 //RUTAS DE PROVEEDORES
 Route::get('/contacto',function(){
