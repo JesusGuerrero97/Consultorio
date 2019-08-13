@@ -56,11 +56,8 @@
 					<td>{!! $paciente->direccion !!}</td>
                     <td>{!! $paciente->telefono!!}</td>
                     <td><a class="waves-effect waves-light btn modal-trigger" data-target="modal1" ng-click="comprobar({{$paciente->id}})">Tratamiento</a></td>
-	                <td>
-	                <a class="waves-effect blue accent-3 btn " href="{{route('editPac', $paciente->id)}}" ><i class="material-icons">
-								edit
-								</i></a>
-							</td>
+	                <td><li class="waves-effect"><a href="{{route('editPac', $paciente->id)}}"><i class="small material-icons">edit</i></a></li></td>
+	                
                     <?php if(($paciente->status >0)): ?>
                         <td><div class="switch"><label><input type="checkbox" id="estatus" ng-click="estatus({{$paciente->id}})" checked="checked" ><span class="lever"></span></label></div></td>
 					<?php else: ?>
@@ -109,6 +106,11 @@
                         <input placeholder="#" id="meses" type="text" class="validate"  ng-model="tratamiento.total">
                         <label for="meses">Total de meses</label>
                     </div>
+                    <div class="row">
+                        <div class="input-field col s8">
+                            <td><a class="waves-effect waves-light btn" ng-click="historial(tratamiento.id)">Historial Medico</a></td>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -132,6 +134,21 @@
 								function(response){
 									console.log(response.data);
 									window.location = "pacientes";
+									
+								},
+								function(erroResponse){
+									
+								}
+							);
+						}
+                        $scope.historial=function(id){
+							$scope.id = id;
+							console.log("Entra a la funcion");
+							console.log($scope.id);
+							$http.post('/historial',$scope.id).then(
+								function(response){
+									console.log(response.data);
+									//window.location = "pacientes";
 									
 								},
 								function(erroResponse){
