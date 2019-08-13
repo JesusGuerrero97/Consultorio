@@ -33,10 +33,10 @@
           <div class="row">
             <div class="col m12">
               <ul class="tabs">
-                <li class="tab col m3"><a  class="active" href="#test1">Medicamentos</a></li>
-                <li class="tab col m3"><a href="#test2">Empleados</a></li>
-                <li class="tab col m3"><a href="#test3">Pacientes</a></li>
-                <li class="tab col m3"><a href="#test4">Almacen</a></li>
+                <li class="tab col m4"><a  class="active" href="#test1">Medicamentos</a></li>
+                <li class="tab col m4"><a href="#test2">Empleados</a></li>
+                <li class="tab col m4"><a href="#test3">Pacientes</a></li>
+                
               </ul>
             </div>
             <div id="test1" class="col m12">
@@ -177,7 +177,6 @@
               </div>
 
             </div>
-            <div id="test4" class="col m12">Test 4</div>
           </div>
         </div>
         @section('footer')

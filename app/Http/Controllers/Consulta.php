@@ -16,9 +16,14 @@ class Consulta extends Controller
      */
     public function index(Request $request)
     {
-        $consultas = new Consultas();
-        $consultas = $consultas->where('id_tratamiento', '=', $request[0])->first();
-
+        
+        $consultas = DB::table('consultas')
+        ->where('id_tratamiento', $request[0])->first();
+        /*$dosis = DB::table('dosis')
+        ->join('medicamentos','dosis.id_medicamento','=','medicamentos.id')
+        ->select('medicamentos.nombre','dosis.descripcion','dosis.id','dosis.id_medicamento')
+        ->get();
+        $consultas = $consultas->where('id_tratamiento', '=', $request[0])->first();*/
         return view('historial')->with('consultas',$consultas); 
     }
 

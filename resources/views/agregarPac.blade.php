@@ -6,6 +6,7 @@
         <style>
             .crd{
                 height:88vh;
+               
             }
             .mrg{
                 padding: 2%;   
@@ -14,38 +15,39 @@
                 padding: 1%;   
             }
         </style>
-        <div class="container">
+        <div class="">
         <div ng-controller= "ctrl" <?php if (isset($id)) {
       echo 'ng-init="mandar('.$id.')"';
     }?>>
+        <div class="crd card white mrg">
             <div class="row">
-                <form class="col s12">
+            <form class="col m12">
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                         <input id="Nombre" type="text" class="validate" placeholder="Nombre" ng-model="paciente.nombre">
                         <label for="Nombre">Nombre</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                         <input id="Apellido" type="text" class="validate" placeholder="Apellidos" ng-model="paciente.apellido">
                         <label for="Apellido">Apellido</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                         <input id="Fecha" type="date" class="validate" placeholder="Fecha de nacimiento" ng-model="paciente.fechaNac" ng-change="fin()">
                         <label for="Fecha">Fecha Nacimiento</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                         <input type="text" class="validate" placeholder="Sexo" ng-model="paciente.sexo">
                         <label for="Sexo">Sexo</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                         <input id="Direccion" type="text" class="validate" placeholder="Direccion" ng-model="paciente.direccion">
                         <label for="direccion">Direccion</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                         <input id="telefono" type="text" class="validate" placeholder="Telefono" ng-model="paciente.telefono">
                         <label for="telefono">Telefono</label>
                         </div>
@@ -54,10 +56,12 @@
                         <div class="input-field col 12">
                         <a href="#!" class="waves-effect waves-light btn" ng-click="editar()" ng-if="paciente.id!=null">Editar</a>
                         <a class="waves-effect waves-light btn" ng-click="enviar()" ng-if="paciente.id==null">Guardar</a>
-                        <a class="waves-effect waves-light btn" href="{{route('pacientes')}}">Cancelar</a>
+                        <a class="waves-effect waves-light btn red" href="{{route('pacientes')}}">Cancelar</a>
                     </div>
                 </form>
             </div>
+        </div>
+            
         </div>
         </div>
         @section('footer')

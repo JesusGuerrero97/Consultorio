@@ -32,7 +32,7 @@
             <table class="striped">
         <thead>
           <tr>
-              <th>ID</th>
+              
               <th>Nombre</th>
               <th>Apellido</th>
               <th>Fecha Nacimiento</th>
@@ -48,7 +48,7 @@
         <tbody>
             @foreach($pacientes as $paciente)
 	            <tr>
-	                <td>{!! $paciente->id !!}</td>
+	               
 	                <td>{!! $paciente->nombre !!}</td>
                     <td>{!! $paciente->apellido !!}</td>
 	                <td>{!! $paciente->fechaNac !!}</td>
@@ -107,9 +107,13 @@
                         <label for="meses">Total de meses</label>
                     </div>
                     <div class="row">
-                        <div class="input-field col s8">
-                            <td><a class="waves-effect waves-light btn" ng-click="historial(tratamiento.id)">Historial Medico</a></td>
-                        </div>
+                        <form method="POST" action="{{ route('historial') }}">
+                        {{ csrf_field() }}
+                            <div class="input-field col s8">
+                                <input name="id" type="hidden" value="tratamiento.id">
+                                <button  type="submit" class="waves-effect waves-light btn">Historial Medico</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
