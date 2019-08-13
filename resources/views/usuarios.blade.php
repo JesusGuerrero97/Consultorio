@@ -13,23 +13,38 @@
             .mrg2{
                 padding: 1%;   
             }
-            .tabs .tab a
-            {
-              color:#00ACC1;
+            .tabs .tab a{
+                color:#00ACC1;
             }
-            .tabs .tab a:hover,.tabs .tab a.active 
-            {
-              background-color:transparent !important;
-              color:#008B9B;
+            .tabs .tab a:hover,.tabs .tab a.active {
+                background-color:transparent !important;
+                color:#008B9B;
             }
-            .tabs .tab.disabled a,.tabs .tab.disabled a:hover 
-            {
-              color:rgba(102,147,153,0.7);  
+            .tabs .tab.disabled a,.tabs .tab.disabled a:hover {
+                color:rgba(102,147,153,0.7);    
             }
-            .tabs .indicator 
-            {
-              background-color:#009BAD;
+            .tabs .indicator {
+                background-color:#009BAD;
             }
+            /*Estilos tabs de las tablas*/
+            .tabs2 .tab2 a{
+                color:#78909c;
+            }
+            .tabs2 .tab2 a:hover,.tabs2 .tab2 a.active {
+                background-color:#cfd8dc !important;
+                color:#546e7a;
+            }
+            .tabs2 .tab2.disabled a,.tabs2 .tab2.disabled a:hover {
+                color:#78909c;  
+            }
+            .tabs2 .indicator {
+                background-color:#546e7a ;
+            }
+
+            .swal-button--cancel {
+                background-color: #efefef !important;
+            }
+
         </style>
 <div class="">
     <div ng-controller="crtl">
@@ -37,12 +52,12 @@
             <div class="row mrg2">
                 <div class="input-field col m9" ng-show="habilitados">
                     <i class="material-icons prefix">search</i>
-                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="usuariosActivos2">
+                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="usuarioson">
                     <label for="busMedicamento">Usuarios</label> 
                 </div>
                 <div class="input-field col m9" ng-show="deshabilitados">
                     <i class="material-icons prefix">search</i>
-                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="usuariosDesactivos2">
+                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="usuariosoff">
                     <label for="busMedicamento">Usuarios</label> 
                 </div>
                 <div class="input-field col m3">
@@ -106,8 +121,8 @@
         </div>
     	<div class="card">
             <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1" class="active" ng-click="habilitar()">Habilitados</a></li>
-                    <li class="tab col s3"><a href="#test2" ng-click="desabilitar()">Inhabilitados</a></li>
+                    <li class="tab tab2 col m6"><a href="#test1" class="active" ng-click="habilitar()">Habilitados</a></li>
+                    <li class="tab tab2 col m6"><a href="#test2" ng-click="desabilitar()">Inhabilitados</a></li>
                 </ul>
     		<div class="row mrg" ng-show="habilitados">
 		        <table>
@@ -138,27 +153,26 @@
                             <th scope="col">Usuario</th>
                             <th scope="col">Email</th>
                             <th scope="col">Tipo</th>
-                            <th scope="col">Editar</th>
-                            <th scope="col">Desabilitar</th>
+                            <th scope="col">Habilitar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-pagination="usuario in usuariosDesactivos2 " ng-pagination-size="5" ng-click="cargarDatos([[usuario.id]])">
+                        <tr ng-pagination="usuario in usuariosoff " ng-pagination-size="5" ng-click="cargarDatos([[usuario.id]])">
                            <td scope="col">[[usuario.name]]</td>
                             <td scope="col">[[usuario.email]]</td>
                             <td scope="col">[[usuario.tipo]]</td>
-                            <td><li class="waves-effect"><a href="#idModalModificar" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
-                           <td><div class="switch"><label><input type="checkbox" ng-click="desactivar()"><span class="lever"></span></label> </div></td>
+                            
+                           <td><div class="switch"><label><input type="checkbox" ng-click="activar()"><span class="lever"></span></label> </div></td>
                         </tr>
                      </tbody>
                 </table>
             </div>
-		</div>+
+		</div>
         <div ng-show="habilitados">
-            <ng-pagination-control pagination-id="usuariosActivos2" ></ng-pagination-control>
+            <ng-pagination-control pagination-id="usuarioson" ></ng-pagination-control>
         </div>
         <div ng-show="deshabilitados">
-            <ng-pagination-control pagination-id="usuariosDesactivos2" ></ng-pagination-control>
+            <ng-pagination-control pagination-id="usuariosoff" ></ng-pagination-control>
         </div>        
 		<div id="idModalModificar" class="modal">
 			<div class="modal-content">
@@ -207,22 +221,14 @@
                     $scope.contra={};
                     $scope.usuariomodificar={};
                     $scope.usuarioson=[];
+                    $scope.usuariosoff=[];
 
                     $scope.usuarios2= (<?php echo $usuarios;?>);
                     $scope.empleados2= (<?php echo $empleados;?>);
-                    $scope.usuariosActivos2= (<?php echo $usuariosActivos;?>);
-                    $scope.usuariosDesactivos2= (<?php echo $usuariosDesactivos;?>);
-
-                    $scope.i;
-                    for ($scope.i ; $scope.i < $scope.usuariosActivos2.length; $scope.i ++) 
-                    {
-                            //Pasar los datos a los inputs
-                            $scope.usuarioson.push($scope.usuariosActivos2[$scope.i]);
-                    }
 
                     console.log($scope.usuarios2);
                     console.log($scope.empleados2);
-                    console.log($scope.usuarioson);
+                    console.log($scope.usuariosActivos2);
                     console.log($scope.usuariosDesactivos2);
 
 
@@ -240,6 +246,32 @@
                         $scope.habilitados=false;
                         $scope.deshabilitados=true;
                     }
+
+                    // Usuarios habilitados
+                    $scope.i=0;
+                    $scope.estatus=1;
+                    for ($scope.i ; $scope.i < $scope.usuarios2.length; $scope.i ++) 
+                    {
+                        if($scope.usuarios2[$scope.i].status==$scope.estatus)
+                        {
+                            //Pasar los datos a los inputs
+                            $scope.usuarioson.push($scope.usuarios2[$scope.i]);
+                        }
+                    }
+                    console.log("On: " , $scope.usuarioson);
+
+                    // Usuarios inhabilitados
+                    $scope.i=0;
+                    $scope.estatus2=0;
+                    for ($scope.i ; $scope.i < $scope.usuarios2.length; $scope.i ++) 
+                    {
+                        if($scope.usuarios2[$scope.i].status==$scope.estatus2)
+                        {
+                            //Pasar los datos a los inputs
+                            $scope.usuariosoff.push($scope.usuarios2[$scope.i]);
+                        }
+                    }
+                    console.log("Off: " , $scope.usuariosoff);
 
                     $scope.cargarDatos=function(id)
                     {
@@ -328,7 +360,7 @@
                         if($scope.usuariomodificar.name!=null || $scope.usuariomodificar.email!=null || $scope.usuariomodificar.tipo!=null)
                         {
                                 $scope.usuario.status=1;
-                                $http.post('/modificar/'+$scope.id, $scope.usuariomodificar).then
+                                $http.post('/modificarUsuarios/'+$scope.id, $scope.usuariomodificar).then
                                 (
                                     function(response)
                                     {
@@ -370,6 +402,29 @@
                                 console.log("Se desactivo");
                                 swal({
                                       title: "Desactivado Exitosamente",
+                                      text: "Click boton Ok para continuar.",
+                                      icon: "success",                                    
+                                    }).then((value) =>{
+                                        window.location.reload();
+                                    });
+                            },
+                            function(errorResponse)
+                            {
+                                swal("Ocurrio un error", "error");
+                            }
+                        );
+                    }
+
+                    $scope.activar=function()
+                    {
+                        $scope.usuario.status=1;
+                        $http.post('/activar2/'+$scope.id, $scope.usuario).then
+                        (
+                            function(response)
+                            {
+                                console.log("Se activo");
+                                swal({
+                                      title: "Activado Exitosamente",
                                       text: "Click boton Ok para continuar.",
                                       icon: "success",                                    
                                     }).then((value) =>{

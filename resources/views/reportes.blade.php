@@ -33,10 +33,10 @@
           <div class="row">
             <div class="col m12">
               <ul class="tabs">
-                <li class="tab col m3"><a  class="active" href="#test1">Medicamentos</a></li>
-                <li class="tab col m3"><a href="#test2">Empleados</a></li>
-                <li class="tab col m3"><a href="#test3">Pacientes</a></li>
-                <li class="tab col m3"><a href="#test4">Proveedores</a></li>
+                <li class="tab col m4"><a  class="active" href="#test1">Medicamentos</a></li>
+                <li class="tab col m4"><a href="#test2">Empleados</a></li>
+                <li class="tab col m4"><a href="#test3">Pacientes</a></li>
+                
               </ul>
             </div>
             <div id="test1" class="col m12">
@@ -153,6 +153,7 @@
                       <thead>
                         <tr>
                           <th>Nombre</th>
+                          <th>Apellidos</th>
                           <th>Fecha Nacimiento</th>
                           <th>Sexo</th>
                           <th>Dirección</th>
@@ -162,7 +163,8 @@
                       <tbody>
                           <tr ng-pagination="paciente in pacientes" ng-pagination-size="5">
                               <td>@{{paciente.nombre}}</td>
-                              <td>@{{paciente.fecha_nac}}</td>
+                              <td>@{{paciente.apellido}}</td>
+                              <td>@{{paciente.fechaNac}}</td>
                               <td >@{{paciente.sexo}}</td>
                               <td >@{{paciente.direccion}}</td>
                               <td >@{{paciente.telefono}}</td>
@@ -175,7 +177,6 @@
               </div>
 
             </div>
-            <div id="test4" class="col m12">Test 4</div>
           </div>
         </div>
         @section('footer')
@@ -198,7 +199,7 @@
                 $scope.empleados = (<?php echo $empleados;?>);
 
                 $scope.pacientes = {};
-                $scope.pacientes = (<? echo $pacientes;?>);
+                $scope.pacientes = (<?php echo $pacientes;?>);
 
             });
       

@@ -13,14 +13,46 @@
             .mrg2{
                 padding: 1%;   
             }
+            .tabs .tab a
+            {
+              color:#00ACC1;
+            }
+            .tabs .tab a:hover,.tabs .tab a.active 
+            {
+              background-color:transparent !important;
+              color:#008B9B;
+            }
+            .tabs .tab.disabled a,.tabs .tab.disabled a:hover 
+            {
+              color:rgba(102,147,153,0.7);  
+            }
+            .tabs .indicator 
+            {
+              background-color:#009BAD;
+            }
         </style>
 <div class="">
     <div ng-controller="crtl">
         <div class="card">
             <div class="row mrg2">
-                <div class="input-field col m9">
+                <div class="input-field col m9" ng-show="todos">
                     <i class="material-icons prefix">search</i>
                     <input id="busMedicamento" type="text" class="validate" ng-pagination-search="tratamiento">
+                    <label for="busMedicamento">Paciente</label> 
+                </div>
+                <div class="input-field col m9" ng-show="asistir">
+                    <i class="material-icons prefix">search</i>
+                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="asistira">
+                    <label for="busMedicamento">Paciente</label> 
+                </div>
+                <div class="input-field col m9" ng-show="noasistir">
+                    <i class="material-icons prefix">search</i>
+                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="noAsistira">
+                    <label for="busMedicamento">Paciente</label> 
+                </div>
+                <div class="input-field col m9" ng-show="pendientee">
+                    <i class="material-icons prefix">search</i>
+                    <input id="busMedicamento" type="text" class="validate" ng-pagination-search="pendiente">
                     <label for="busMedicamento">Paciente</label> 
                 </div>
             </div>
@@ -38,20 +70,18 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Observaciones</th>
+                                <th>Tipo</th>
                                 <th>Telefono</th>
-                                <th>Enviar correo</th>
+                                <th>Meses restantes</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-pagination="trata in tratamiento " ng-pagination-size="5" >
                                 <td>[[trata.nombre]]</td>
-                                <td>[[trata.apellidos]]</td>
-                                <td>[[trata.Observaciones]]</td>
+                                <td>[[trata.tipo]]</td>
                                 <td>[[trata.telefono]]</td>
-                                <td><button class="waves-effect blue accent-3 btn modal-trigger"  href=""><i class="material-icons">send</i></button></td>
+                                <td>[[trata.total]]</td>
                                 <td ng-click="obtenerId([trata.id])" ng-model="detalleTratamiento.id">
                                     <select ng-model="detalleTratamiento.Estado">
                                       <option value="" disabled selected>Selecciona</option>
@@ -72,29 +102,23 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Observaciones</th>
+                                <th>Tipo</th>
                                 <th>Telefono</th>
-                                <th>Enviar correo</th>
+                                <th>Fecha</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-pagination="trata in asistira " ng-pagination-size="5" >
                                 <td>[[trata.nombre]]</td>
-                                <td>[[trata.apellidos]]</td>
-                                <td>[[trata.Observaciones]]</td>
+                                <td>[[trata.tipo]]</td>
                                 <td>[[trata.telefono]]</td>
-                                <td><button class="waves-effect blue accent-3 btn modal-trigger"  href=""><i class="material-icons">send</i></button></td>
-                                <td ng-click="obtenerId([trata.id])" ng-model="detalleTratamiento.id">
-                                    <select ng-model="detalleTratamiento.Estado">
-                                      <option value="" disabled selected>Selecciona</option>
-                                      <option value="Asistira">Asistira</option>
-                                      <option value="No asistira">No asistira</option>
-                                      <option value="Pendiente">Pendiente</option>
-                                    </select>
+                                <td>[[trata.created_at]]</td>
+                                <td>
+                                    
+                                      [[trata.Estado]]
+        
                                 </td>
-                                <td><li class="waves-effect"  ng-click="guardar()"><i class="small material-icons">beenhere</i></li></td>
                             </tr>
                          </tbody>
                     </table>
@@ -106,70 +130,71 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Observaciones</th>
+                                <th>Tipo</th>
                                 <th>Telefono</th>
-                                <th>Enviar correo</th>
+                                <th>Fecha</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-pagination="trata in noAsistira " ng-pagination-size="5" >
                                 <td>[[trata.nombre]]</td>
-                                <td>[[trata.apellidos]]</td>
-                                <td>[[trata.Observaciones]]</td>
+                                <td>[[trata.tipo]]</td>
                                 <td>[[trata.telefono]]</td>
-                                <td><button class="waves-effect blue accent-3 btn modal-trigger"  href=""><i class="material-icons">send</i></button></td>
-                                <td ng-click="obtenerId([trata.id])" ng-model="detalleTratamiento.id">
-                                    <select ng-model="detalleTratamiento.Estado">
-                                      <option value="" disabled selected>Selecciona</option>
-                                      <option value="Asistira">Asistira</option>
-                                      <option value="No asistira">No asistira</option>
-                                      <option value="Pendiente">Pendiente</option>
-                                    </select>
+                                <td>[[trata.created_at]]</td>
+                                <td>
+                                    [[trata.Estado]]
+                                    
                                 </td>
-                                <td><li class="waves-effect"  ng-click="guardar()"><i class="small material-icons">beenhere</i></li></td>
                             </tr>
                          </tbody>
                     </table>
                 </div>
             </div>
-            <div class="row mrg" ng-show="pendiente">
+            <div class="row mrg" ng-show="pendientee">
                 <div class="col m12">
                     <table class="centered">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Observaciones</th>
+                                <th>Tipo</th>
                                 <th>Telefono</th>
-                                <th>Enviar correo</th>
+                                <th>Fecha</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-pagination="trata in pendiente " ng-pagination-size="5" >
                                 <td>[[trata.nombre]]</td>
-                                <td>[[trata.apellidos]]</td>
-                                <td>[[trata.Observaciones]]</td>
+                                <td>[[trata.tipo]]</td>
                                 <td>[[trata.telefono]]</td>
-                                <td><button class="waves-effect blue accent-3 btn modal-trigger"  href=""><i class="material-icons">send</i></button></td>
-                                <td ng-click="obtenerId([trata.id])" ng-model="detalleTratamiento.id">
+                                <td>[[trata.created_at]]</td>
+                                <td ng-click="obtenerId2([trata.id])" ng-model="detalleTratamiento.id">
                                     <select ng-model="detalleTratamiento.Estado">
-                                      <option value="" disabled selected>Selecciona</option>
+                                      <option value="" disabled selected>[[trata.Estado]]</option>
                                       <option value="Asistira">Asistira</option>
                                       <option value="No asistira">No asistira</option>
-                                      <option value="Pendiente">Pendiente</option>
                                     </select>
                                 </td>
-                                <td><li class="waves-effect"  ng-click="guardar()"><i class="small material-icons">beenhere</i></li></td>
+                                <td><li class="waves-effect"  ng-click="modificar()"><i class="small material-icons">beenhere</i></li></td>
                             </tr>
                          </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <ng-pagination-control pagination-id="tratamiento" ></ng-pagination-control> 
+        <div ng-show="todos">
+            <ng-pagination-control pagination-id="tratamiento" ></ng-pagination-control> 
+        </div>
+        <div ng-show="asistir">
+            <ng-pagination-control pagination-id="asistira" ></ng-pagination-control> 
+        </div>
+        <div ng-show="noasistir">
+            <ng-pagination-control pagination-id="noAsistira" ></ng-pagination-control> 
+        </div>
+        <div ng-show="pendientee">
+            <ng-pagination-control pagination-id="pendiente" ></ng-pagination-control> 
+        </div>
     </div>
 </div>
 @section('footer')
@@ -182,30 +207,71 @@
                 app.controller('crtl',function($scope, $http, $filter)
                 {
                     $scope.detalleTratamiento={};
+                    $scope.asistira=[];
+                    $scope.noAsistira=[];
+                    $scope.pendiente=[];
+                    $scope.citas;
+                    $scope.citas2;
 
                     $scope.tratamiento = (<?php echo $tratamiento;?>);
                     console.log($scope.tratamiento);
 
-                    $scope.asistira = (<?php echo $asistira;?>);
-                    console.log($scope.asistira);
-
-                    $scope.noAsistira = (<?php echo $noAsistira;?>);
-                    console.log($scope.noAsistira);
+                    $scope.tratamiento2 = (<?php echo $tratamiento2;?>);
+                    console.log($scope.tratamiento2);
 
                     $scope.pendiente = (<?php echo $pendiente;?>);
                     console.log($scope.pendiente);
 
+                    // Empleados Asistiran
+                    $scope.i=0;
+                    var tipo = 'Asistira';
+                    for ($scope.i ; $scope.i < $scope.tratamiento2.length; $scope.i ++)
+                    { 
+                        if($scope.tratamiento2[$scope.i].Estado==tipo)
+                        {
+                            //Pasar los datos a los inputs
+                            $scope.asistira.push($scope.tratamiento2[$scope.i]);
+                        }
+                    }
+                    console.log("Asistira: " , $scope.asistira);
+
+                    // Empleados Asistiran
+                    $scope.i=0;
+                    var tipo = 'No asistira';
+                    for ($scope.i ; $scope.i < $scope.tratamiento2.length; $scope.i ++)
+                    { 
+                        if($scope.tratamiento2[$scope.i].Estado==tipo)
+                        {
+                            //Pasar los datos a los inputs
+                            $scope.noAsistira.push($scope.tratamiento2[$scope.i]);
+                        }
+                    }
+                    console.log("No asistira: " , $scope.noAsistira);
+
+                    // Empleados Asistiran
+                    $scope.i=0;
+                    var tipo = 'Pendiente';
+                    for ($scope.i ; $scope.i < $scope.tratamiento2.length; $scope.i ++)
+                    { 
+                        if($scope.tratamiento2[$scope.i].Estado==tipo)
+                        {
+                            //Pasar los datos a los inputs
+                            $scope.pendiente.push($scope.tratamiento2[$scope.i]);
+                        }
+                    }
+                    console.log("Pendiente: " , $scope.pendiente);
+
                     $scope.todos=true;
                     $scope.asistir=false;
                     $scope.noasistir=false;
-                    $scope.pendiente=false;
+                    $scope.pendientee=false;
 
                     $scope.todos2=function()
                     {
                         $scope.todos=true;
                         $scope.asistir=false;
                         $scope.noasistir=false;
-                        $scope.pendiente=false;
+                        $scope.pendientee=false;
                     }
 
                     $scope.asistir2=function()
@@ -213,7 +279,7 @@
                         $scope.todos=false;
                         $scope.asistir=true;                      
                         $scope.noasistir=false;
-                        $scope.pendiente=false;
+                        $scope.pendientee=false;
                     }
 
                     $scope.noasistir2=function()
@@ -221,7 +287,7 @@
                         $scope.todos=false;
                         $scope.asistir=false;                      
                         $scope.noasistir=true;
-                        $scope.pendiente=false;
+                        $scope.pendientee=false;
                     }
 
                     $scope.pendiente2=function()
@@ -229,13 +295,35 @@
                         $scope.todos=false;
                         $scope.asistir=false;                      
                         $scope.noasistir=false;
-                        $scope.pendiente=true;
+                        $scope.pendientee=true;
                     }
 
                     $scope.obtenerId=function(id)
                     {
                         console.log("holis: " + id);
+                        $scope.i=0;
+                        for ($scope.i ; $scope.i < $scope.tratamiento.length; $scope.i ++) 
+                        {
+                            if($scope.tratamiento[$scope.i].id==id)
+                            //Pasar los datos a los inputs
+                            $scope.citas=$scope.tratamiento[$scope.i].total;
+                        }
                         $scope.id=id;
+                        console.log($scope.citas);
+                    }
+
+                    $scope.obtenerId2=function(id)
+                    {
+                        console.log("holis: " + id);
+                        $scope.id2=id;
+                        console.log($scope.id2);
+                        for ($scope.i ; $scope.i < $scope.tratamiento2.length; $scope.i ++) 
+                        {
+                            if($scope.tratamiento2[$scope.i].id==id)
+                            //Pasar los datos a los inputs
+                            $scope.citas2=$scope.tratamiento2[$scope.i].total;
+                        }
+                        console.log($scope.citas2);
                     }
 
                     $scope.guardar=function()
@@ -245,7 +333,6 @@
                             function(response)
                             {
                                 console.log($scope.detalleTratamiento);
-                                $scope.usuario={};
                                 swal({
                                   title: "Guardado Exitosamente",
                                   text: "Click boton Ok para continuar.",
@@ -260,7 +347,69 @@
                                 swal("Error", "", "error");
                             }
                         );
+                        if($scope.detalleTratamiento.Estado=="Asistira")
+                        {
+                            $scope.citas=$scope.citas -1;
+                            console.log($scope.citas);
+                            $scope.detalleTratamiento.total=$scope.citas;
+                            console.log("probar: ", $scope.detalleTratamiento.total);
+
+                            $http.post('/restar/'+$scope.id, $scope.detalleTratamiento).then
+                            (
+                                function(response)
+                                {
+
+                                },
+                                function(errorResponse)
+                                {
+
+                                }
+                            );
+                        }
+                    }
+                    $scope.modificar=function()
+                    {
+                        console.log("modificar: ", $scope.detalleTratamiento);
+                        $http.put('/modificar3/'+$scope.id2, $scope.detalleTratamiento).then
+                        (
+                            function(response)
+                            {
+                                console.log($scope.detalleTratamiento);
+                                swal({
+                                  title: "Guardado Exitosamente",
+                                  text: "Click boton Ok para continuar.",
+                                  icon: "success",                                    
+                                }).then((value) =>{
+                                    window.location.reload();
+                                });
+                            },
+                            function(errorResponse)
+                            {
+                                console.log($scope.detalleTratamiento);
+                                swal("Error", "", "error");
+                            }
+                        );
+                        if($scope.detalleTratamiento.Estado=="Asistira")
+                        {
+                            $scope.citas=$scope.citas -1;
+                            console.log($scope.citas);
+                            $scope.detalleTratamiento.total=$scope.citas;
+                            console.log("probar: ", $scope.detalleTratamiento.total);
+
+                            $http.put('/restar2/'+$scope.id2, $scope.detalleTratamiento).then
+                            (
+                                function(response)
+                                {
+
+                                },
+                                function(errorResponse)
+                                {
+
+                                }
+                            );
+                        }
                     } 
+
                 });
 
                 document.addEventListener('DOMContentLoaded', function() 

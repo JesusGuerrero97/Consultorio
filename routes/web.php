@@ -61,6 +61,8 @@ Route::post('/editarPac','pacientes@update');
 Route::post('/cambiarPac', 'pacientes@cambiar');
 Route::post('/guardarTrata','pacientes@tratamiento');
 Route::post('/solicitarTrata','tratamientos@solicitar');
+Route::post('/historial', 'consulta@index')->name('historial');
+
 
 //RUTAS DE ALMACEN
 Route::get('/almacen',function(){
@@ -80,7 +82,7 @@ Route::get('/RH_Empleados',function(){
 })->name('Empleados');
 Route::post('/save', 'empleados@store');
 Route::get('/RH_Empleados', 'empleados@show');
-Route::post('/modificar/{id}', 'empleados@update');
+Route::post('/modificarEmpleados/{id}', 'empleados@update');
 Route::post('/desactivar/{id}', 'empleados@desactivar');
 Route::post('/activar/{id}', 'empleados@activar');
 //Route::get('/traer', 'empleados@show2');
@@ -91,9 +93,9 @@ Route::get('/usuarios',function(){
 });
 Route::post('/guardar', 'usuarios@store');
 Route::get('/usuarios', 'usuarios@show');
-Route::post('/modificar/{id}', 'usuarios@update');
+Route::post('/modificarUsuario/{id}', 'usuarios@update');
 Route::post('/desactivar2/{id}', 'usuarios@desactivar');
-
+Route::post('/activar2/{id}', 'usuarios@activar');
 
 //RUTAS DE PROVEEDORES
 Route::get('/contacto',function(){
@@ -122,17 +124,6 @@ Route::get('/crm',function(){
 });
 Route::get('/crm', 'crm@show');
 Route::post('/guardar/{id}', 'detalleTratamientos@store');
-
-//RUTAS CALENDARIO DE CITAS
-Route::get('/citas',function(){
-    return view('schedule');
-})->name('citas');
-
-Route::post('/saveCita', 'Schedule@store');
-Route::get('/citasGet', 'Schedule@show');
-Route::get('/getPac', 'Schedule@getPacientes');
-
-
 Auth::routes();
 
 

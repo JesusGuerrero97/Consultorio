@@ -33,6 +33,7 @@
         <thead class="blue-grey">
           <tr>
               <th>Nombre</th>
+              <th>Apellidos</th>
               <th>Fecha Nacimiento</th>
               <th>Sexo</th>
               <th>Dirección</th>
@@ -44,7 +45,8 @@
         @foreach($data as $datos)
           <tr>
             <td>{!! $datos->nombre!!}</td>
-            <td>{!! $datos->fecha_nac !!}</td>          
+            <td>{!! $datos->apellido!!}</td>
+            <td>{!! $datos->fechaNac !!}</td>          
             <td>{!! $datos->sexo !!}</td>
             <td>{!! $datos->direccion !!}</td>
             <td>{!! $datos->telefono !!}</td>

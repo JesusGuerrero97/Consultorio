@@ -55,12 +55,6 @@
 	<div ng-controller="ctrl">
         <div class="row">
             <div class="col m12">
-                <ul class="tabs">
-                    <li class="tab col m6"><a class="active" href="#test1">Proveedores</a></li>
-                    <li class="tab col m6"><a  href="#test2">Contacto-Proveedor</a></li>
-                </ul>
-            </div>
-            <div id="test1" class="col m12">
                 <div class="card">
                     <div class="row">
                         <div class="col m8">
@@ -75,7 +69,7 @@
                                 <input id="busEmpresa2" name="buscarEmpresa" type="text" ng-pagination-search="proveedoresoff">
                                 <label for="busEmpresa2">Empresa</label>
                             </div>
-                        </div>
+                    </div>
                     <div class="input-field col m3">
                         <button class="waves-effect waves-light btn modal-trigger" data-target="agProveedor"> + proveedor</button>
                         <!-- Modal Structure -->
@@ -96,7 +90,7 @@
                                         </div>
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">phone_in_talk</i>
-                                            <input id="telefono" type="number" class="validate" ng-model="nuevoProveedor.telefono">
+                                            <input id="telefono" type="text" class="validate" ng-model="nuevoProveedor.telefono">
                                             <label for="telefono">Teléfono</label>
                                         </div>
                                     </div>
@@ -110,8 +104,7 @@
                     </div>
                 </div>
             </div>
-
-                <div class="card">
+            <div class="card">
                     <div class="row">
                         <div class="">
                             <div class="col m12">
@@ -131,15 +124,15 @@
                             			<th>Editar</th>
                             			<th>Deshabilitar</th>
                             		</tr>
-                            		@foreach ($proveedores as $proveedor)
-                                       <tr>
-                                            <td><?= $proveedor->empresa ?></td>
-                                            <td><?= $proveedor->direccion ?></td>
-                                            <td><?= $proveedor->telefono ?></td>
-                                            <td><li class="waves-effect"><a href="#editProveedor" ng-click="selectEditar(<?= $proveedor->id ?>)" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
-                                            <td><div class="switch" ng-click="changeStatusOF(proveedor.id)"><label><input type="checkbox"><span class="lever"></span></label></div></td>
+                            		
+                                       <tr ng-pagination="proveedor in proveedoreson" ng-pagination-size="5">
+                                            <td>@{{proveedor.empresa}}</td>
+                                            <td>@{{proveedor.direccion}}</td>
+                                            <td>@{{proveedor.telefono}}</td>
+                                            <td><li class="waves-effect"><a href="#editProveedor" ng-click="selectEditar(proveedor.id)" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
+                                            <td><div class="switch" ng-click="changeStatusOF(proveedor.id)"><label><input class="switchon" type="checkbox"><span class="lever"></span></label></div></td>
                                        </tr>
-                                    @endforeach()
+                                  
                             	</table>
                             </div>
                         </div>
@@ -151,18 +144,14 @@
                                         <th>Empresa</th>
                                         <th>Dirección</th>
                                         <th>Telefono</th>
-                                        <th>Editar</th>
                                         <th>Deshabilitar</th>
                                     </tr>
-                                    @foreach ($proveedores as $proveedor)
                                        <tr ng-pagination="proveedor in proveedoresoff" ng-pagination-size="5">
-                                            <td><?= $proveedor->empresa ?></td>
-                                            <td><?= $proveedor->direccion ?></td>
-                                            <td><?= $proveedor->telefono ?></td>
-                                            <td><li class="waves-effect"><a href="#editProveedor" ng-click="selectEditar(proveedores.id)" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
-                                            <td><div class="switch" ng-click="changeStatusON(proveedores.id)"><label><input type="checkbox"><span class="lever"></span></label></div></td>
+                                            <td>@{{proveedor.empresa}}</td>
+                                            <td>@{{proveedor.direccion}}</td>
+                                            <td>@{{proveedor.telefono}}</td>
+                                            <td><div class="switch" ng-click="changeStatusON(proveedores.id)"><label><input class="switchoff" type="checkbox"><span class="lever"></span></label></div></td>
                                        </tr>
-                                    @endforeach()
                                 </table>
                             </div>
                         </div>
@@ -184,7 +173,7 @@
                                         </div>
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">phone_in_talk</i>
-                                            <input id="telefono" type="number" class="validate" ng-model="proveedor.telefono">
+                                            <input id="telefono" type="text" class="validate" ng-model="proveedor.telefono">
                                             <label for="telefono">Teléfono</label>
                                         </div>
                                     </div>
@@ -198,117 +187,15 @@
                     </div>
                 </div>
             </div>
+                
 
-            <div id="test2" class="col m12">
-                <div class="card">
-                    <div class="row">
-                        <div class="col m8">
-                            <div class="input-field col m12" ng-show="habilitar">
-                                <i class="material-icons prefix">search</i>
-                                <input id="busContacto" name="buscarContacto" type="text" ng-pagination-search="proveedoreson">
-                                <label for="busContacto">Contacto</label>
-                            </div>
-
-                            <div class="input-field col m12" ng-show="deshabilitar">
-                                <i class="material-icons prefix">search</i>
-                                <input id="busContacto2" name="buscarContacto" type="text" ng-pagination-search="proveedoresoff">
-                                <label for="busContacto2">Empresa</label>
-                            </div>
-                        </div>
-                    <div class="input-field col m3">
-                        <button class="waves-effect waves-light btn modal-trigger" data-target="agContacto"> + contacto</button>
-                        <!-- Modal Structure -->
-                        <form name="FrmContactos">
-                            <div id="agContacto" class="modal">
-                                <div class="modal-content">
-                                    <h4 class="black-text center">Contacto</h4>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <i class="prefix material-icons">business</i>
-                                            <input id="nomEmpresa" type="text" class="validate" ng-model="proveedores.empresa" ng-pattern="/^[a-zA-Z\s ñáéíóú]*$/">
-                                            <label for="nomEmpresa">Nombre de la empresa</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <i class="prefix material-icons">place</i>
-                                            <input id="dirEmpresa" type="text" class="validate" ng-model="proveedores.direccion">
-                                            <label for="dirEmpresa">Dirección de la empresa</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <i class="prefix material-icons">phone_in_talk</i>
-                                            <input id="telefono" type="number" class="validate" ng-model="proveedores.telefono">
-                                            <label for="telefono">Teléfono</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
-                                    <button type="submit" class="btn modal-close" ng-click="GuardarPro()">Guardar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-                <div class="card">
-                    <div class="row">
-                        <div id="habilitados" class="col m12">
-                            <div class="row mrg">
-                                <table>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Telefono</th>
-                                        <th>Correo</th>
-                                        <th>Editar</th>
-                                        <th>Eliminar</th>
-                                    </tr>
-                                    @foreach ($proveedores as $proveedor)
-                                       <tr>
-                                            <td><?= $proveedor->empresa ?></td>
-                                            <td><?= $proveedor->direccion ?></td>
-                                            <td><?= $proveedor->telefono ?></td>
-                                            <td><li class="waves-effect"><a href="#editProveedor" ng-click="selectEditar(contacto.id)" class="modal-trigger"><i class="small material-icons">edit</i></a></li></td>
-                                            <td><li class="waves-effect center-align"><a><i class="red-text small material-icons">delete_forever</i></a></li></td>
-                                       </tr>
-                                    @endforeach()
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- Modal Editar -->
-                        <form name="FrmProveedores" id="FrmProveedores">
-                            <div id="editProveedor" class="modal">
-                                <div class="modal-content">
-                                    <h4 class="black-text center">Proveedor</h4>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <i class="prefix material-icons">business</i>
-                                            <input id="nomEmpresa" type="text" class="validate" ng-model="proveedores.empresa">
-                                            <label for="nomEmpresa">Nombre de la empresa</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <i class="prefix material-icons">place</i>
-                                            <input id="dirEmpresa" type="text" class="validate" ng-model="proveedores.direccion">
-                                            <label for="dirEmpresa">Dirección de la empresa</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <i class="prefix material-icons">phone_in_talk</i>
-                                            <input id="telefono" type="number" class="validate" ng-model="proveedores.telefono">
-                                            <label for="telefono">Teléfono</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
-                                    <button type="submit" class="btn modal-close" ng-click="editar()">Editar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+           
+           
+                        
+                        
+                   
         </div>
-	</div>
+    </div>
 
     @section('footer')
 	@parent
@@ -481,7 +368,7 @@
                         $scope.aidi = id_proveedor;
                         console.log($scope.aidi);
                         swal({
-                            title: "¿Estás seguro de habilitar este registro?",
+                            title: "¿Estás seguro de deshabilitar este registro?",
                             text: "¡Puedes modificar este cambio si asi lo deseas!",
                             icon: "warning",
                             buttons: ["Cancelar", "Si"],

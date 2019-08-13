@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Consultas as Consultas;
+use DB;
 
 class Consulta extends Controller
 {
@@ -12,9 +14,17 @@ class Consulta extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
+        $consultas = DB::table('consultas')
+        ->where('id_tratamiento', $request[0])->first();
+        /*$dosis = DB::table('dosis')
+        ->join('medicamentos','dosis.id_medicamento','=','medicamentos.id')
+        ->select('medicamentos.nombre','dosis.descripcion','dosis.id','dosis.id_medicamento')
+        ->get();
+        $consultas = $consultas->where('id_tratamiento', '=', $request[0])->first();*/
+        return view('historial')->with('consultas',$consultas); 
     }
 
     /**
