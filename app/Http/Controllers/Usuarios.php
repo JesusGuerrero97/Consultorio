@@ -35,6 +35,7 @@ class Usuarios extends Controller
     {
     	$usuarios = User::all();
     	$empleados = Empleado::all();
-    	return view('usuarios', compact('usuarios', 'empleados'));	
+        $usuariosAdministradores = User::all()->where('tipo', '=', 'Administrador');
+    	return view('usuarios', compact('usuarios', 'empleados', 'usuariosAdministradores'));	
     }
 }

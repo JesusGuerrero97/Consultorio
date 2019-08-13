@@ -98,8 +98,13 @@ Route::get('/tablaProveedor',function(){
 
 Route::get('/tablaProveedor','Proveedores@show');
 
+//Route::get('/tablaProveedor','Contactos@show');
+
 Route::post('/GuardarPro', 'Proveedores@store');
 
+Route::post('/HabilitarPro','Proveedores@Habilitar');
+
+Route::post('/DeshabilitarPro','Proveedores@Deshabilitar');
 
 
 //TABLA DE REPORTES
@@ -107,9 +112,13 @@ Route::get('/reportes',function(){
     return view('reportes');
 });
 
+//Route::get('/reportes','Reportes@showProveedores');
+
 //RUTAS DE CRM
 Route::get('/crm',function(){
     return view('crm');
 });
+Route::get('/crm', 'crm@show');
+Route::post('/guardar/{id}', 'detalleTratamientos@store');
 Auth::routes();
 

@@ -155,7 +155,6 @@
 			<div ng-if="deshabilitar">
 				<ng-pagination-control pagination-id="empleadosoff" ></ng-pagination-control>
 			</div>
-			<ng-pagination-control pagination-id="empleados"></ng-pagination-control>
 			<div id="idModalModificar" class="modal" tabindex="-1" role="content">
 				<div class="modal-content modal-sm center-align" role="document">
 					<h3 class="">Modificar</h3>
