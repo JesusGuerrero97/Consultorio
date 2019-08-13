@@ -61,6 +61,8 @@ Route::post('/editarPac','pacientes@update');
 Route::post('/cambiarPac', 'pacientes@cambiar');
 Route::post('/guardarTrata','pacientes@tratamiento');
 Route::post('/solicitarTrata','tratamientos@solicitar');
+Route::post('/historial', 'consulta@index')->name('historial');
+
 
 //RUTAS DE ALMACEN
 Route::get('/almacen',function(){

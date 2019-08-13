@@ -148,7 +148,7 @@
 							$http.post('/historial',$scope.id).then(
 								function(response){
 									console.log(response.data);
-									//window.location = "pacientes";
+									//window.location.href = 'http://127.0.0.1:8000/historial1';
 									
 								},
 								function(erroResponse){

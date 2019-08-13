@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Tratamientos;
 use App\Tratamiento as Tratamiento;
-use App\Consulta as Consulta;
+
 use DB;
 
 class Tratamientos extends Controller
@@ -17,9 +17,7 @@ class Tratamientos extends Controller
      */
     public function index(Request $request)
     {
-        $consultas = new Consulta();
-        $consultas = $consultas->where('id_tratamiento', '=', $request[0])->first();
-        return view('historial', compact('consultas'));
+
     }
     public function solicitar(Request $request)
     {

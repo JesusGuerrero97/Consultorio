@@ -28,11 +28,13 @@
               <th>Id Empleado</th>
           </tr>
         </thead>
-
         <tbody>
+            <?php 
+                //die($consultas[0]);
+            ?>
             @foreach($consultas as $consulta)
 	            <tr>
-	                <td>{!! $consulta->id_consulta !!}</td>
+	                <td>{!! $consulta->id !!}</td>
 	                <td>{!! $consulta->tratamiento !!}</td>
                     <td>{!! $consulta->pago !!}</td>
 	                <td>{!! $consulta->id_cita !!}</td>
@@ -50,6 +52,7 @@
             <script>
                 var app=angular.module('app',[]);
             	app.controller('ctrl',function($scope,$http){
+
             
                 }); 
             </script>
