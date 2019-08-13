@@ -126,6 +126,10 @@ Route::get('/crm', 'crm@show');
 Route::post('/guardar/{id}', 'detalleTratamientos@store');
 
 ///citas
+//RUTAS CALENDARIO DE CITAS
+Route::get('/citas',function(){
+    return view('schedule');
+})->name('citas');
 Route::post('/saveCita', 'Schedule@store');
 Route::post('/saveConsulta', 'Schedule@createConsulta');
 Route::post('/saveCitaKind', 'Schedule@addCitaKind');
