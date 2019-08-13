@@ -124,6 +124,16 @@ Route::get('/crm',function(){
 });
 Route::get('/crm', 'crm@show');
 Route::post('/guardar/{id}', 'detalleTratamientos@store');
+
+///citas
+Route::post('/saveCita', 'Schedule@store');
+Route::post('/saveConsulta', 'Schedule@createConsulta');
+Route::post('/saveCitaKind', 'Schedule@addCitaKind');
+Route::get('/citasGet', 'Schedule@show');
+Route::get('/getPac', 'Schedule@getPacientes');
+Route::get('/getPro', 'Schedule@getProvedores');
+Route::get('/getDoc', 'Schedule@getDoctores');
+Route::post('/updateState', 'Schedule@updateStatus');
 Auth::routes();
 
 
