@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat" ng-click="guardar({{$paciente->id}})" ng-if="tratamiento.id==null">Guardar</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" ng-click="guardar()" ng-if="tratamiento.id==null">Guardar</a>
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
             </div>
         </div>
@@ -139,8 +139,8 @@
 								}
 							);
 						}
-                        $scope.guardar=function(id){
-                            $scope.tratamiento.id_paciente = id;
+                        $scope.guardar=function(){
+                            //$scope.tratamiento.id_paciente = id;
                             console.log($scope.tratamiento.id_paciente);
 							console.log($scope.tratamiento);
 							$scope.tratamiento.tipo= $("#tipo").val();
@@ -152,7 +152,7 @@
 								}
 								if(response.data == 1){
 										alert("agregado con exito");
-										window.location = "pacientes";
+										//window.location = "pacientes";
 									}
 								},
 								function(erroResponse){
@@ -165,9 +165,18 @@
 							$http.post('/solicitarTrata',$scope.id).then(
 								function(response){
 									console.log(response.data);
-									$scope.tratamiento = response.data;
-                                    $("#tipo").val($scope.tratamiento.tipo);
-                                    console.log($("#tipo").val());
+                                    if(response.data == 0){
+                                        $scope.tratamiento = {};
+                                        $scope.tratamiento.id_paciente = $scope.id;
+                                        console.log($scope.tratamiento.id_paciente);
+                                        console.log("entra a funcion");
+                                    }
+                                    else{
+                                        $scope.tratamiento = response.data;
+                                        $("#tipo").val($scope.tratamiento.tipo);
+                                        console.log($("#tipo").val());
+                                    }
+									
 								},
 								function(erroResponse){
 									

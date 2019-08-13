@@ -95,7 +95,7 @@
                 && $scope.paciente.direccion != null && $scope.paciente.telefono != null)
                 {
                 console.log($scope.paciente);
-                $http.post('/guardar',$scope.paciente).then(
+                $http.post('/guardarPac',$scope.paciente).then(
                     function(response){
                         console.log(response);
                         if(response.data == 0){

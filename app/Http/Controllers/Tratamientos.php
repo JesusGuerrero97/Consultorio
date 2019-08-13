@@ -21,8 +21,15 @@ class Tratamientos extends Controller
     public function solicitar(Request $request)
     {
         $tratamiento = new Tratamiento();
-        $tratamiento = $tratamiento->where('id', '=', $request[0])->first();
-        return $tratamiento;
+        $tratamiento = $tratamiento->where('id_paciente', '=', $request[0])->first();
+
+        if($tratamiento == null){
+            return 0;
+        }
+        else{
+            return $tratamiento;
+        }
+        
     }
 
     /**
