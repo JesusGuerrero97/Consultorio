@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="{{asset('css/materialize.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!--    citas -->
+
+    <link rel="stylesheet" href="{{ asset('css/datepicker.css') }}">
+    <link rel="stylesheet" href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fullcalendar.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/citas.css') }}">
+
     <style>
         div.prueba{
             height:90.4vh;
@@ -67,7 +76,7 @@
             <hr>
             <li class="{{(request () -> is ('RH_Empleados'))? 'active': ''}}"><a href="{{url('RH_Empleados')}}"><i class="material-icons">supervisor_account</i>Empleados</a></li>
             <li class="{{(request () -> is ('pacientes'))? 'active': ''}}"><a href="{{url('pacientes')}}"><i class="material-icons">accessibility</i>Pacientes</a></li>
-            <li><a href="{{url('home')}}"><i class="material-icons">calendar_today</i>Citas</a></li>
+            <li class="{{(request () -> is ('citas'))? 'active': ''}}"><a href="{{url('citas')}}"><i class="material-icons">calendar_today</i>Citas</a></li>
             <li class="{{(request () -> is ('almacen'))? 'active': ''}}"><a href="{{url('almacen')}}"><i class="material-icons">list_alt</i>Almacén</a></li>
             <li class="{{(request () -> is ('medicamentos'))? 'active': ''}}"><a href="{{url('medicamentos')}}"><i class="material-icons">local_hospital</i>Medicamentos</a></li>
             <li class="{{(request () -> is ('crm'))? 'active': ''}}"><a href="{{url('crm')}}"><i class="material-icons">folder_shared</i>CRM</a></li>
