@@ -82,7 +82,7 @@
                                 <td>[[trata.tipo]]</td>
                                 <td>[[trata.telefono]]</td>
                                 <td>[[trata.total]]</td>
-                                <td ng-click="obtenerId([trata.id])" ng-model="detalleTratamiento.id">
+                                <td ng-click="obtenerId([trata.id])">
                                     <select ng-model="detalleTratamiento.Estado">
                                       <option value="" disabled selected>Selecciona</option>
                                       <option value="Asistira">Asistira</option>
@@ -161,21 +161,23 @@
                                 <th>Telefono</th>
                                 <th>Fecha</th>
                                 <th>Estado</th>
+                                <th>asd</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr ng-pagination="trata in pendiente " ng-pagination-size="5" >
+                        <tbody >
+                            <tr ng-pagination="trata in pendiente " ng-pagination-size="5" ng-click="obtenerId3([trata.total])">
                                 <td>[[trata.nombre]]</td>
                                 <td>[[trata.tipo]]</td>
                                 <td>[[trata.telefono]]</td>
                                 <td>[[trata.created_at]]</td>
-                                <td ng-click="obtenerId2([trata.id])" ng-model="detalleTratamiento.id">
-                                    <select ng-model="detalleTratamiento.Estado">
-                                      <option value="" disabled selected>[[trata.Estado]]</option>
+                                <td ng-click="obtenerId2([trata.id_tratamiento])" >
+                                    <select ng-model="detalleTratamiento.Estado"  >
+                                      <option value="" disabled selected >[[trata.Estado]]</option>
                                       <option value="Asistira">Asistira</option>
                                       <option value="No asistira">No asistira</option>
                                     </select>
                                 </td>
+                                <td ng-click="obtenerId4(trata.id)"></td>
                                 <td><li class="waves-effect"  ng-click="modificar()"><i class="small material-icons">beenhere</i></li></td>
                             </tr>
                          </tbody>
@@ -218,9 +220,6 @@
 
                     $scope.tratamiento2 = (<?php echo $tratamiento2;?>);
                     console.log($scope.tratamiento2);
-
-                    $scope.pendiente = (<?php echo $pendiente;?>);
-                    console.log($scope.pendiente);
 
                     // Empleados Asistiran
                     $scope.i=0;
@@ -312,18 +311,24 @@
                         console.log($scope.citas);
                     }
 
+
                     $scope.obtenerId2=function(id)
                     {
-                        console.log("holis: " + id);
+                        console.log("id_tratamiento: " + id);
                         $scope.id2=id;
-                        console.log($scope.id2);
-                        for ($scope.i ; $scope.i < $scope.tratamiento2.length; $scope.i ++) 
-                        {
-                            if($scope.tratamiento2[$scope.i].id==id)
-                            //Pasar los datos a los inputs
-                            $scope.citas2=$scope.tratamiento2[$scope.i].total;
-                        }
+                    }
+
+                    $scope.obtenerId3=function(total)
+                    {
+                        console.log("total: " + total);
+                        $scope.citas2=total;
                         console.log($scope.citas2);
+                    }
+
+                    $scope.obtenerId4=function(id)
+                    {
+                        console.log("id detalleTratamiento: " + id);
+                        $scope.id=id;
                     }
 
                     $scope.guardar=function()
@@ -340,6 +345,7 @@
                                 }).then((value) =>{
                                     window.location.reload();
                                 });
+                                $scope.id2=$scope.id;
                             },
                             function(errorResponse)
                             {
@@ -367,10 +373,11 @@
                             );
                         }
                     }
+                        
                     $scope.modificar=function()
                     {
                         console.log("modificar: ", $scope.detalleTratamiento);
-                        $http.put('/modificar3/'+$scope.id2, $scope.detalleTratamiento).then
+                        $http.put('/modificar3/'+$scope.id, $scope.detalleTratamiento).then
                         (
                             function(response)
                             {
@@ -391,12 +398,12 @@
                         );
                         if($scope.detalleTratamiento.Estado=="Asistira")
                         {
-                            $scope.citas=$scope.citas -1;
-                            console.log($scope.citas);
-                            $scope.detalleTratamiento.total=$scope.citas;
+                            $scope.citas2=$scope.citas2 -1;
+                            console.log("restado",$scope.citas2);
+                            $scope.detalleTratamiento.total=$scope.citas2;
                             console.log("probar: ", $scope.detalleTratamiento.total);
 
-                            $http.put('/restar2/'+$scope.id2, $scope.detalleTratamiento).then
+                            $http.post('/restar2/'+$scope.id2, $scope.detalleTratamiento).then
                             (
                                 function(response)
                                 {
