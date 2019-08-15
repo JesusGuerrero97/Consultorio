@@ -57,7 +57,7 @@ class Tratamientos extends Controller
         return $request;
     }
 
-    public function store2($id, Request $request)
+    public function update($id, Request $request)
     {
         DB::table('tratamiento')
                 ->where('id', '=', $id)

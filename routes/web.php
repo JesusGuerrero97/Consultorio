@@ -124,7 +124,9 @@ Route::get('/crm',function(){
 });
 Route::get('/crm', 'crm@show');
 Route::post('/guardar/{id}', 'detalleTratamientos@store');
-
+Route::post('/restar/{id}', 'tratamientos@store');
+Route::put('/modificar3/{id}', 'detalleTratamientos@update');
+Route::post('/restar2/{id}', 'tratamientos@update');
 ///citas
 //RUTAS CALENDARIO DE CITAS
 Route::get('/citas',function(){

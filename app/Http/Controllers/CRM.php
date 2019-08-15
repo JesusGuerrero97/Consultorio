@@ -20,16 +20,9 @@ class CRM extends Controller
         $tratamiento2 = DB::table('tratamiento')
         ->join('pacientes', 'pacientes.id', '=', 'tratamiento.id_paciente')
         ->join('detalle_tratamientos', 'detalle_tratamientos.id_tratamiento', 'tratamiento.id')
-        ->select('tratamiento.id','nombre','telefono', 'tipo', 'Estado', 'detalle_tratamientos.created_at', 'detalle_tratamientos.id', 'total')
+        ->select('detalle_tratamientos.id','detalle_tratamientos.id_tratamiento','nombre','telefono', 'tipo', 'Estado', 'detalle_tratamientos.created_at', 'total')
         ->get();
 
-        $pendiente = DB::table('tratamiento')
-        ->join('pacientes', 'pacientes.id', '=', 'tratamiento.id_paciente')
-        ->join('detalle_tratamientos', 'detalle_tratamientos.id_tratamiento', 'tratamiento.id')
-        ->select('tratamiento.id','nombre','telefono', 'tipo', 'Estado', 'detalle_tratamientos.created_at', 'detalle_tratamientos.id', 'total')
-        ->where('detalle_tratamientos.Estado', '=', 'Pendiente')
-        ->get();
-
-        return view('crm', compact('tratamiento', 'tratamiento2', 'pendiente'));
+        return view('crm', compact('tratamiento', 'tratamiento2'));
     }
 }
