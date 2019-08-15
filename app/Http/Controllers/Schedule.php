@@ -110,7 +110,7 @@ class Schedule extends Controller
 
         foreach ($pacientes as $pas) {
             $tempData = new \stdClass();
-            $tempData -> id =  $pas -> id_paciente;
+            $tempData -> id =  $pas -> id;
             $tempData -> name = $pas -> nombre;
             array_push($newData, $tempData);
         }
@@ -123,7 +123,7 @@ class Schedule extends Controller
 
         foreach ($pacientes as $pas) {
             $tempData = new \stdClass();
-            $tempData -> id =  $pas -> id_emp;
+            $tempData -> id =  $pas -> id;
             $tempData -> name = $pas -> nombre.' '.$pas -> apellido;
             array_push($newData, $tempData);
         }
@@ -137,7 +137,7 @@ class Schedule extends Controller
 
         foreach ($provedores as $pro) {
             $tempData = new \stdClass();
-            $tempData -> id =  $pro -> id_proveedor;
+            $tempData -> id =  $pro -> id;
             $tempData -> name = $pro -> empresa;
             array_push($newData, $tempData);
         }

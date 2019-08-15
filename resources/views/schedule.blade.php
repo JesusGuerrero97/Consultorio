@@ -141,7 +141,7 @@
                                 <label for="autocomplete-input-provedor">Buscar proveedor</label>
                             </div>
                         </div>
-                        <div class="row" ng-show="type === '' || type === '1'">
+                        <div class="row" ng-show="type === '' || type === '1'" ng-init="type = ''">
                             <h5 style="text-align: center">Seleccionar nuevo paciente</h5>
                             <div id="T1" class="col s1"></div>
                             <div class="input-field col s5">
@@ -162,7 +162,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn modal-close waves-effect red accent-2 btn">Cancelar</button>
-            <button class="btn" ng-click="schedule()">Agendar</button>
+            <button class="btn" id="lol">Agendar</button>
         </div>
     </div>
     <div class="p-5">
@@ -190,7 +190,7 @@
             $('#modal3').modal('open');
         });
 
-        $scope.type = '';
+        $scope.type = '1';
         $scope.title = ''
         $scope.timeStart = "";
         $scope.timeEnd = "";
@@ -387,7 +387,7 @@
             );
 
         }
-        $scope.schedule = function(){
+        $('#lol').click( function(){
 
             $scope.backStart = $scope.backStart.split('T')[0] + " " + $scope.timeStart + ":00";
             $scope.backEnd = $scope.backEnd.split('T')[0] + " " + $scope.timeEnd + ":00";
@@ -471,7 +471,7 @@
                 {
                 }
             );
-        }
+        });
     });
 
     $(document).ready( function () {

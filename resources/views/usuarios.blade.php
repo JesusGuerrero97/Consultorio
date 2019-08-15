@@ -136,7 +136,7 @@
 				    	</tr>
 				  	</thead>
 				  	<tbody>
-			    	    <tr ng-pagination="usuario in usuarioson " ng-pagination-size="5" ng-click="cargarDatos([[usuario.id]])">
+			    	    <tr ng-pagination="usuario in usuarioson " ng-pagination-size="4" ng-click="cargarDatos([[usuario.id]])">
 				    	   <td scope="col">[[usuario.name]]</td>
                             <td scope="col">[[usuario.email]]</td>
                             <td scope="col">[[usuario.tipo]]</td>
@@ -157,7 +157,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-pagination="usuario in usuariosoff " ng-pagination-size="5" ng-click="cargarDatos([[usuario.id]])">
+                        <tr ng-pagination="usuario in usuariosoff " ng-pagination-size="4" ng-click="cargarDatos([[usuario.id]])">
                            <td scope="col">[[usuario.name]]</td>
                             <td scope="col">[[usuario.email]]</td>
                             <td scope="col">[[usuario.tipo]]</td>

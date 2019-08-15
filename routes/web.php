@@ -138,6 +138,7 @@ Route::get('/getPac', 'Schedule@getPacientes');
 Route::get('/getPro', 'Schedule@getProvedores');
 Route::get('/getDoc', 'Schedule@getDoctores');
 Route::post('/updateState', 'Schedule@updateStatus');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
 
