@@ -127,6 +127,19 @@ Route::post('/guardar/{id}', 'detalleTratamientos@store');
 Route::post('/restar/{id}', 'tratamientos@store');
 Route::put('/modificar3/{id}', 'detalleTratamientos@update');
 Route::post('/restar2/{id}', 'tratamientos@update');
+///citas
+//RUTAS CALENDARIO DE CITAS
+Route::get('/citas',function(){
+    return view('schedule');
+})->name('citas');
+Route::post('/saveCita', 'Schedule@store');
+Route::post('/saveConsulta', 'Schedule@createConsulta');
+Route::post('/saveCitaKind', 'Schedule@addCitaKind');
+Route::get('/citasGet', 'Schedule@show');
+Route::get('/getPac', 'Schedule@getPacientes');
+Route::get('/getPro', 'Schedule@getProvedores');
+Route::get('/getDoc', 'Schedule@getDoctores');
+Route::post('/updateState', 'Schedule@updateStatus');
 Auth::routes();
 
 
