@@ -71,7 +71,7 @@
                             </div>
                     </div>
                     <div class="input-field col m3">
-                        <button class="waves-effect waves-light btn modal-trigger" data-target="agProveedor"> + proveedor</button>
+                        <button class="waves-effect waves-light btn modal-trigger" data-target="agProveedor">AGREGAR PROVEEDOR</button>
                         <!-- Modal Structure -->
                         <form name="FrmProveedores">
                             <div id="agProveedor" class="modal">
@@ -120,7 +120,7 @@
                             		<tr>
                             			<th>Empresa</th>
                             			<th>Dirección</th>
-                            			<th>Telefono</th>
+                            			<th>Teléfono</th>
                             			<th>Editar</th>
                             			<th>Deshabilitar</th>
                             		</tr>
@@ -143,7 +143,7 @@
                                     <tr>
                                         <th>Empresa</th>
                                         <th>Dirección</th>
-                                        <th>Telefono</th>
+                                        <th>Teléfono</th>
                                         <th>Deshabilitar</th>
                                     </tr>
                                        <tr ng-pagination="proveedor in proveedoresoff" ng-pagination-size="5">
@@ -173,7 +173,7 @@
                                         </div>
                                         <div class="input-field col s12">
                                             <i class="prefix material-icons">phone_in_talk</i>
-                                            <input id="telefono" type="text" class="validate" ng-model="proveedor.telefono">
+                                            <input id="telefono" type="text" numbers-only class="validate" ng-model="proveedor.telefono">
                                             <label for="telefono">Teléfono</label>
                                         </div>
                                     </div>
@@ -212,6 +212,26 @@
     	
     	var app=angular.module('app',['ngPagination']).config(function ($interpolateProvider) {});
     	app.controller('ctrl', function($scope, $http){
+
+            app.directive('numbersOnly', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModelCtrl) {
+                function fromUser(text) {
+                    if (text) {
+                        var transformedInput = text.replace(/[^0-9]/g, '');
+                        if (transformedInput !== text) {
+                            ngModelCtrl.$setViewValue(transformedInput);
+                            ngModelCtrl.$render();
+                        }
+                        return transformedInput;
+                    }
+                    return undefined;
+                }
+                ngModelCtrl.$parsers.push(fromUser);
+            }
+        }
+    });
             
             var id = 0;
             $scope.proveedores = {};

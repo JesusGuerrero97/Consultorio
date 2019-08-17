@@ -37,8 +37,8 @@
               <th>Apellido</th>
               <th>Fecha Nacimiento</th>
               <th>Sexo</th>
-              <th>Direccion</th>
-              <th>Telefono</th>
+              <th>Dirección</th>
+              <th>Teléfono</th>
               <th>Tratamiento</th>
               <th>Editar</th>
               <th>Deshabilitar</th>
@@ -119,7 +119,7 @@
             </div>
             <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat" ng-click="guardar()" ng-if="tratamiento.id==null">Guardar</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            <a href="#!" class="btn modal-close red">Cancelar</a>
             </div>
         </div>
     </div>

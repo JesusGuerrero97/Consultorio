@@ -132,7 +132,7 @@
 							<th scope="col">Email</th>
 							<th scope="col">Tipo</th>
                             <th scope="col">Editar</th>
-							<th scope="col">Desabilitar</th>
+							<th scope="col">Deshabilitar</th>
 				    	</tr>
 				  	</thead>
 				  	<tbody>

@@ -129,10 +129,10 @@
 						      		<th scope="col">Nombre</th>
 									<th scope="col">Apellidos</th>
 									<th scope="col">Domicilio</th>
-									<th scope="col">Telefono</th>
+									<th scope="col">Teléfono</th>
 									<th scope="col">Número seguro social</th>
 									<th scope="col">Editar</th>
-									<th scope="col">Desabilitar</th>
+									<th scope="col">Deshabilitar</th>
 						    	</tr>
 						  	</thead>
 						  	<tbody>
@@ -225,7 +225,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn modal-close red" data-tarjet="#idModal">Cancelar</button>
-				<button type="submit" ng-click="modificar()" class="btn modal-close blue" data-tarjet="#idModal">Guardar</button>
+				<button type="submit" ng-click="modificar()" class="btn modal-close" data-tarjet="#idModal">Guardar</button>
 			</div>
 		</div>
 	</div>

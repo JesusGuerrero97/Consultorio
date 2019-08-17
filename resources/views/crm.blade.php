@@ -60,7 +60,7 @@
         <div class="card">
             <ul class="tabs">
                     <li class="tab col s3"><a href="#test1" class="active" ng-click="todos2()">Todos</a></li>
-                    <li class="tab col s3"><a href="#test1" ng-click="asistir2()">Asistiran</a></li>
+                    <li class="tab col s3"><a href="#test1" ng-click="asistir2()">Asistirán</a></li>
                     <li class="tab col s3"><a href="#test2" ng-click="noasistir2()">No asistirán</a></li>
                     <li class="tab col s3"><a href="#test2" ng-click="pendiente2()">Pendientes</a></li>
                 </ul>
@@ -71,7 +71,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Tipo</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
                                 <th>Meses restantes</th>
                                 <th>Estado</th>
                             </tr>
@@ -85,8 +85,8 @@
                                 <td ng-click="obtenerId([trata.id])">
                                     <select ng-model="detalleTratamiento.Estado">
                                       <option value="" disabled selected>Selecciona</option>
-                                      <option value="Asistira">Asistira</option>
-                                      <option value="No asistira">No asistira</option>
+                                      <option value="Asistira">Asistirá</option>
+                                      <option value="No asistira">No asistirá</option>
                                       <option value="Pendiente">Pendiente</option>
                                     </select>
                                 </td>
@@ -103,7 +103,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Tipo</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
                                 <th>Fecha</th>
                                 <th>Estado</th>
                             </tr>
@@ -131,7 +131,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Tipo</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
                                 <th>Fecha</th>
                                 <th>Estado</th>
                             </tr>
@@ -158,10 +158,9 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Tipo</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
                                 <th>Fecha</th>
                                 <th>Estado</th>
-                                <th>asd</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -173,8 +172,8 @@
                                 <td ng-click="obtenerId2([trata.id_tratamiento])" >
                                     <select ng-model="detalleTratamiento.Estado"  >
                                       <option value="" disabled selected >[[trata.Estado]]</option>
-                                      <option value="Asistira">Asistira</option>
-                                      <option value="No asistira">No asistira</option>
+                                      <option value="Asistira">Asistirá</option>
+                                      <option value="No asistira">No asistirá</option>
                                     </select>
                                 </td>
                                 <td ng-click="obtenerId4(trata.id)"></td>

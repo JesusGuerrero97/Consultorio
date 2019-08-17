@@ -77,7 +77,7 @@
                             </div>
                             <div class="col m4">
                                 <div class="input-field col m12">
-                                    <button class="waves-effect waves-light btn modal-trigger" data-target="agMedicamento" ng-click="limpiar()"> + Medicamentos</button>
+                                    <button class="waves-effect waves-light btn modal-trigger" data-target="agMedicamento" ng-click="limpiar()">AGREGAR MEDICAMENTOS</button>
                                     <!-- Modal Structure -->
                                     <form name="frmMedicamento" id="frmMedicamento">
                                         <div id="agMedicamento" class="modal modal-fixed-footer">
@@ -130,7 +130,7 @@
                                     <thead>
                                     <tr>
                                         <th>Nombre medicamento</th>
-                                        <th>Descripcion</th>
+                                        <th>Descripción</th>
                                         <th>Cantidad por unidad</th>
                                         <th>Editar</th>
                                         <th>Deshabilitar</th>
@@ -224,7 +224,7 @@
                             </div>
                             <div class="col m4">
                                 <div class="input-field col m12">
-                                    <button class="waves-effect waves-light btn modal-trigger" data-target="agDosis" ng-click="limpiar()"> + Dosis medicamento</button>
+                                    <button class="waves-effect waves-light btn modal-trigger" data-target="agDosis" ng-click="limpiar()">AGREGAR DOSIS MEDICAMENTOS</button>
                                     <!-- Modal Structure -->
                                     <form name="frmDosis" id="frmDosis">
                                         <div id="agDosis" class="modal modal-fixed-footer customodal">

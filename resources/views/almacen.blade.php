@@ -24,7 +24,7 @@
                         </div>
                         <div class="input-field col m3">
 						
-                            <a href="#modal1" class="waves-effect waves-light btn modal-trigger">Agregar Material</a>
+                            <a href="#modal1" class="waves-effect waves-light btn modal-trigger">AGREGAR MATERIAL</a>
                         </div>
                     </div>
 					<!-- Modal Agregar -->
@@ -62,9 +62,9 @@
 						</div>
 						<div class="modal-footer">
 						
-                		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="editar()" ng-if="almacen.id!=null">Editar</a>
-						<a href="#!" class="modal-close waves-effect waves-green btn-flat" ng-click="enviar()" ng-if="almacen.id==null">Guardar</a>
-						<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                		<a href="#!" class="btn modal-close" ng-click="editar()" ng-if="almacen.id!=null">Editar</a>
+						<a href="#!" class="btn modal-close" ng-click="enviar()" ng-if="almacen.id==null">Guardar</a>
+						<a href="#!" class="btn modal-close red">Cancelar</a>
 						</div>
 					</div>
 					</div>
@@ -76,7 +76,7 @@
         <thead>
           <tr>
               
-              <th>Descripcin</th>
+              <th>Descripción</th>
               <th>Stock</th>
               <th>Proveedor</th>
               <th>Editar</th>
